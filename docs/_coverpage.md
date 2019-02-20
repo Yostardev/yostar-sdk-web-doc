@@ -5,4 +5,4 @@
 * 使用手册
 
 [GitHub](https://github.com/Yostardev/yostar-sdk-web-doc)
-[Get Started](#概述)
+[Get Started](#安装)
