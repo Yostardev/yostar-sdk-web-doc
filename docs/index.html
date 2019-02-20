@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+	<meta name="description" content="Description">
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsify-themeable@0/dist/css/theme-simple.css">
+	<style>
+		.table-wrapper {
+			overflow: auto;
+		}
+		p {
+			word-wrap:break-word;
+		}
+	</style>
+</head>
+
+<body>
+	<div id="app"></div>
+	<script>
+		window.$docsify = {
+			name: 'Yostar服务端API接口',		//文档标题，显示在侧边栏顶部
+			repo: 'https://github.com/Yostardev/yostar-sdk-server-doc',
+			loadSidebar: true,
+			loadNavbar: true,
+			subMaxLevel: 3,		//可配置最大支持渲染的标题层级
+			coverpage: true,
+			auto2top: true,		//切换页面后是否自动跳转到页面顶部
+			formatUpdated: '{YY}/{MM}/{DD} {HH}:{mm}',
+			homepage: './ZH/YostarSDKServerAPI.md',	//首页文件加载路径
+
+			search: {
+				paths: 'auto',
+
+				// 支持本地化
+				placeholder: {
+					'EN/': 'Type to search',
+					'/': '搜索',
+				},
+
+				// 支持本地化
+				noData: {
+					'EN/': 'No Results',
+					'/': '找不到结果',
+				}
+			},
+
+			themeable: {
+				readyTransition: true, // default
+				responsiveTables: true  // default
+			},
+
+			plugins: [
+				/* function (hook, vm) {
+					hook.beforeEach(function (html) {
+
+						console.log("!!", vm.route.file)
+
+						var url = 'https://github.com/Yostardev/yostarsdk/tree/master/docs/' + vm.route.file
+						var editHtml = '[📝 EDIT DOCUMENT](' + url + ')\n'
+
+						return html
+							+ '\n----\n'
+							+ 'Last modified {docsify-updated} '
+							+ editHtml
+
+					})
+				} */
+			]
+		}
+	</script>
+	<script>
+		if (typeof navigator.serviceWorker !== 'undefined') {
+			navigator.serviceWorker.register('sw.js')
+		}
+	</script>
+	<script src="//unpkg.com/docsify/lib/docsify.min.js"></script>
+	<script src="//unpkg.com/docsify/lib/plugins/search.js"></script>
+	<script src="//unpkg.com/docsify-copy-code"></script>
+	<script src="//unpkg.com/docsify/lib/plugins/zoom-image.js"></script>
+	<script src="//unpkg.com/docsify-pagination/dist/docsify-pagination.min.js"></script>
+	<!-- docsify-themeable (latest v0.x.x) -->
+	<script src="https://cdn.jsdelivr.net/npm/docsify-themeable@0"></script>
+	<!-- prism -->
+	<script src="//unpkg.com/prismjs/components/prism-java.js"></script>
+	<script src="//unpkg.com/prismjs/components/prism-c.js"></script>
+	<script src="//unpkg.com/prismjs/components/prism-objectivec.min.js"></script>
+	<script src="//unpkg.com/prismjs/components/prism-csharp.js"></script>
+</body>
+
+</html>
