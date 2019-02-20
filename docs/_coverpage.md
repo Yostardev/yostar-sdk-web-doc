@@ -1,6 +1,6 @@
 # Yostar
 
-> Yostar服务端API接口文档
+> YostarWeb API接口文档
 
 * 使用手册
 
