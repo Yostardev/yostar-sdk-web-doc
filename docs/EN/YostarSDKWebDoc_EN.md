@@ -4,7 +4,7 @@
 | :---: | :---: | :---: |  :---: | :---: |
 | 2019-2-20 | V1.0.0 | first edition |   |   |
 
-### install
+### Install
 ```html
 <script src="js/yo_acc.js"></script>
 ```
