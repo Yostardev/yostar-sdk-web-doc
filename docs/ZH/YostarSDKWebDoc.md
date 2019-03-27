@@ -100,49 +100,49 @@ Yo.googleAuth({
 
 ## Yostar账号登录请求
 * 请求验证
-    ```javascript
-    Yo.request({
-        account: 'test@example.com'
-    }).then(function(data) {
-        // data.result
-    })
-    ```
-    请求方法： Yo.request  
+```javascript
+Yo.request({
+    account: 'test@example.com'
+}).then(function(data) {
+    // data.result
+})
+```
+请求方法： Yo.request  
 
-    |  参数   |  类型  | 说明  |
-    | :-----: | :----: | :---: |
-    | account | 字符串 | 邮箱  |
+|  参数   |  类型  | 说明  |
+| :-----: | :----: | :---: |
+| account | 字符串 | 邮箱  |
 
-    返回值:  
+返回值:  
 
-    |  参数  | 类型  |                           说明                            |
-    | :----: | :---: | :-------------------------------------------------------: |
-    | result | 整数  | 0：成功，<br>50003:邮箱发送频率上限,<br>50004:account被封 |
+|  参数  | 类型  |                           说明                            |
+| :----: | :---: | :-------------------------------------------------------: |
+| result | 整数  | 0：成功，<br>50003:邮箱发送频率上限,<br>50004:account被封 |
 
 * 提交验证
-    ```javascript
-    Yo.submit({
-        account: 'test@example.com',
-        code: '112233',
-    }).then(function(data) {
-        // data.result
-        // data.uid
-        // data.token
-    })
-    ```
-    请求方法：Yo.submit  
+```javascript
+Yo.submit({
+    account: 'test@example.com',
+    code: '112233',
+}).then(function(data) {
+    // data.result
+    // data.uid
+    // data.token
+})
+```
+请求方法：Yo.submit  
 
-    |  参数   |  类型  |    说明    |
-    | :-----: | :----: | :--------: |
-    | account | 字符串 |    邮箱    |
-    |  code   | 字符串 | 邮箱验证码 |
-    返回值:  
+|  参数   |  类型  |    说明    |
+| :-----: | :----: | :--------: |
+| account | 字符串 |    邮箱    |
+|  code   | 字符串 | 邮箱验证码 |
+返回值:  
 
-    |  参数  |  类型  |                                 说明                                 |
-    | :----: | :----: | :------------------------------------------------------------------: |
-    | result |  整数  | 0：成功，<br>50016：失败,超时，或验证码不一致,<br>50009:失败次数过多 |
-    |  uid   | 字符串 |                               用户uid                                |
-    | token  | 字符串 |                              登录token                               |
+|  参数  |  类型  |                                 说明                                 |
+| :----: | :----: | :------------------------------------------------------------------: |
+| result |  整数  | 0：成功，<br>50016：失败,超时，或验证码不一致,<br>50009:失败次数过多 |
+|  uid   | 字符串 |                               用户uid                                |
+| token  | 字符串 |                              登录token                               |
 
 
 ## 执行登录
