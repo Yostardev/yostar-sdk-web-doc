@@ -1,85 +1,186 @@
-# Yostar Account 文档
+# Majsoul应用接口
 
-| 归档日期 | 版本 | 说明 | 作者 | 审批人 |
-| :---: | :---: | :---: |  :---: | :---: |
-| 2019-2-20 | V1.0.0 | 初稿 |   |   |
+> [测试服务器地址](#测试服务器地址)  
+> [安装示例](#安装示例)  
+> [Twitter登录请求](#Twitter登录请求)  
+> [Facebook登录请求](#Facebook登录请求)  
+> [Google登录请求](#Google登录请求)  
+> [Yostar账号登录请求](#Yostar账号登录请求)  
+> [执行登录](#执行登录)  
+> [验证uid,accessToken](#验证uid,accessToken)  
+> [正式部署](#正式部署)  
 
-### 安装
-```html
-<script src="js/yo_acc.js"></script>
-```
 
-#### Js 使用 
+## 测试服务器地址
+* 服务器地址 [https://passporttest.mahjongsoul.com](https://passporttest.mahjongsoul.com)
+* 浏览器Javascript文件 yo_acc.stg_ja.js  
+* 令牌文件服务器地址 [https://pt01.mul-pay.jp/ext/js/token.js](https://pt01.mul-pay.jp/ext/js/token.js)
+* ShopID: tshop00037465
+
+
+## 安装示例
 ```javascript
-var Yo = windows.Yo;
+/**
+    window.Yo
+*/
+<script src="${服务器地址}/js/${浏览器Javascript文件}"></script>
+/**
+    window.Multipayment
+*/
+<script src="${令牌文件服务器地址}"></script>
 ```
 
-### Api 请求方式
-```html
-Yo.api(params, callback)
-```
-### 请求 params 参数
-| Api | params参数 | 类型 | 说明 |
-| :---: | :---: | :---: | :---: |
-| Yo.request(params, callback) | account | string | 电子邮箱  |
-| Yo.submit(params, callback)  | account | string | 电子邮箱  |
-|                              | code    | string | 验证码    |
-| Yo.debug(params, callback)   | uid     | string | 用户id    |
-|                              | token   | string | 用户token |
 
-
-
-### 返回 callbackResult 参数
-
-| callbackResult参数 | 类型 | 说明 | Api |
-| :---: | :---: | :---: | :---: | 
-| code | number | 返回code  | Yo.request<br> |
-| data | object | 返回数据  | Yo.request |
-| message  | string | 提示信息    | Yo.request |
-
-### 返回 callbackResult.code 参数
-| code | 说明 |
-| :---: | :---: | 
-| 20000 | 成功 | 
-| 30001 | account错误 |
-| 50003 | account邮箱验证频率过快 |
-| 50004 | account被封 |
-| 50016 | account验证码验证失败 |
-| 50009 | account验证码到达失败限制 |
-| 50005 | uid,Token验证失败 |
-
-### 返回 callbackResult.data 参数
-
-| callbackResult参数 | 类型 | 说明 | Api |
-| :---: | :---: | :---: | :---: | 
-| uid | string | 返回uid数据  | Yo.submit, Yo.debug |
-| account | string | 返回account数据  | Yo.submit, Yo.debug |
-| token  | string | 返回token数据    | Yo.submit, Yo.debug |
-
-
-
-### 请求 api 样例
+## Twitter登录请求
 ```javascript
-  let account = 'test@gmail.com';
-  let data0 = await Yo.request({
-    account: account
-  });
-  if (data0.code != 20000) {
-    return console.error(data0);
-  } else {
-    console.log(' > SUCCESS');
-  }
+Yo.twitterAuth({
+    redirect_uri: this.redirect_uri,
+    openNewWindow: this.openNewWindow > 0
+});
 ```
+请求方法： Yo.twitterAuth  
 
-### 服务端验证 uid, token
-> ```
-> 发送uid,token到 https://uc.yo-star.com:3020/account/debug_token
-> 返回 callbackResult
-> ```
-```bash
-样例
-curl --request POST \
-  --url https://uc.yo-star.com:3020/account/debug_token \
-  --header 'Content-Type: application/x-www-form-urlencoded' \
-  --data 'uid=11912523927&token=11912523927-S8jvAb56gAQ5XKozEdVTMiQGHYwfQvZgixMSLq2XbX6C8uNySpdiuTjdmZwMdQCBxkjTYjXkDuBzzUlyK11UVg'
+|     参数      |  类型  |           说明           |
+| :-----------: | :----: | :----------------------: |
+| redirect_uri  | 字符串 | 登录返回跳转地址不带参数 |
+| openNewWindow |  整数  |      是否新窗口打开      |
+返回值地址栏GET参数：  
+
+| 参数  |  类型  |   说明    |
+| :---: | :----: | :-------: |
+|  uid  | 字符串 |  用户uid  |
+| token | 字符串 | 登录token |
+
+
+## Facebook登录请求
+```javascript
+Yo.facebookAuth({
+    redirect_uri: this.redirect_uri,
+    openNewWindow: this.openNewWindow > 0
+});
 ```
+请求方法： Yo.facebookAuth  
+
+|     参数      |  类型  |           说明           |
+| :-----------: | :----: | :----------------------: |
+| redirect_uri  | 字符串 | 登录返回跳转地址不带参数 |
+| openNewWindow |  整数  |      是否新窗口打开      |
+返回值地址栏GET参数：  
+
+| 参数  |  类型  |   说明    |
+| :---: | :----: | :-------: |
+|  uid  | 字符串 |  用户uid  |
+| token | 字符串 | 登录token |
+
+> Facebook登录测试账号：  
+> 登录名：epmyazwbux_1553655623@tfbnw.net  
+> 密码：txODzEUfJqTq6Ssa  
+
+
+## Google登录请求
+```javascript
+Yo.googleAuth({
+    redirect_uri: this.redirect_uri,
+    openNewWindow: this.openNewWindow > 0
+});
+```
+请求方法： Yo.googleAuth  
+
+|     参数      |  类型  |           说明           |
+| :-----------: | :----: | :----------------------: |
+| redirect_uri  | 字符串 | 登录返回跳转地址不带参数 |
+| openNewWindow |  整数  |      是否新窗口打开      |
+返回值地址栏GET参数：  
+
+| 参数  |  类型  |   说明    |
+| :---: | :----: | :-------: |
+|  uid  | 字符串 |  用户uid  |
+| token | 字符串 | 登录token |
+
+
+## Yostar账号登录请求
+* 请求验证
+    ```javascript
+    Yo.request({
+        account: 'test@example.com'
+    }).then(function(data) {
+        // data.result
+    })
+    ```
+    请求方法： Yo.request  
+
+    |  参数   |  类型  | 说明  |
+    | :-----: | :----: | :---: |
+    | account | 字符串 | 邮箱  |
+
+    返回值:  
+
+    |  参数  | 类型  |                           说明                            |
+    | :----: | :---: | :-------------------------------------------------------: |
+    | result | 整数  | 0：成功，<br>50003:邮箱发送频率上限,<br>50004:account被封 |
+
+* 提交验证
+    ```javascript
+    Yo.submit({
+        account: 'test@example.com',
+        code: '112233',
+    }).then(function(data) {
+        // data.result
+        // data.uid
+        // data.token
+    })
+    ```
+    请求方法：Yo.submit  
+
+    |  参数   |  类型  |    说明    |
+    | :-----: | :----: | :--------: |
+    | account | 字符串 |    邮箱    |
+    |  code   | 字符串 | 邮箱验证码 |
+    返回值:  
+
+    |  参数  |  类型  |                                 说明                                 |
+    | :----: | :----: | :------------------------------------------------------------------: |
+    | result |  整数  | 0：成功，<br>50016：失败,超时，或验证码不一致,<br>50009:失败次数过多 |
+    |  uid   | 字符串 |                               用户uid                                |
+    | token  | 字符串 |                              登录token                               |
+
+
+## 执行登录
+请求方法：Yo.login  
+
+| 参数  |  类型  |       说明       |
+| :---: | :----: | :--------------: |
+|  uid  | 字符串 | uid(用户id,唯一) |
+| token | 字符串 |    登录token     |
+
+返回值:  
+
+|    参数     |  类型  |                                                  说明                                                   |
+| :---------: | :----: | :-----------------------------------------------------------------------------------------------------: |
+|   result    |  整数  | 0：成功，<br>1:验证失败，uid和token不匹配,<br>2:IP访问被限制,<br>~~3:设备号被封禁,~~<br>4:该UID已被封禁 |
+| accessToken | 字符串 |                              每次登录生成的accessToken，用于支付及其他请求                              |
+
+
+## 验证uid,accessToken
+请求地址: ${服务器地址}/user/check  
+请求方法: POST    
+
+|    参数     |  类型  |         说明          |
+| :---------: | :----: | :-------------------: |
+|     uid     | 字符串 |          uid          |
+| accessToken | 字符串 | 登录获取的accessToken |
+返回值:  
+
+| 参数  |  类型  |            说明             |
+| :---: | :----: | :-------------------------: |
+| state |  整数  |       1：成功,99:失败       |
+|  msg  | 字符串 | SUCCESS:成功, INVALID：失败 |
+
+
+
+## 正式部署
+* 服务器地址 [https://passport.mahjongsoul.com](https://passport.mahjongsoul.com)
+* 浏览器Javascript文件 yo_acc.prod_ja.js  
+* 令牌文件服务器地址 [https://p01.mul-pay.jp/ext/js/token.js](https://p01.mul-pay.jp/ext/js/token.js)
+* ShopID: tshop00037465
+
