@@ -171,8 +171,6 @@ AccountLogin: function () {
     }).then(data0 => {
         console.log(data0);
         this.loginInfo = data0;
-    }).then(data => {
-        console.log(data);
     }).catch(console.log)
 }
 ```
