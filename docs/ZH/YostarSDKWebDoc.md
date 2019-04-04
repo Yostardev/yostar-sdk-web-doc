@@ -161,6 +161,22 @@ Yo.submit({
 | accessToken | 字符串 |                              每次登录生成的accessToken，用于支付及其他请求                              |
 
 
+```javascript
+// 示例
+AccountLogin: function () {
+    return Yo.login({
+        uid: this.uid,
+        token: this.token,
+        //deviceId,
+    }).then(data0 => {
+        console.log(data0);
+        this.loginInfo = data0;
+    }).then(data => {
+        console.log(data);
+    }).catch(console.log)
+}
+```
+
 ## 验证uid,accessToken
 请求地址: ${服务器地址}/user/check  
 请求方法: POST    
