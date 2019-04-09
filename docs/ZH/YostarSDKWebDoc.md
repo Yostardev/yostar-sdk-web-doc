@@ -608,28 +608,7 @@ Yo.generateOriginKey({ originDomain: originDomain }, (err, data) => {
     请求地址：${服务器地址}/ay/mc/createOrder  
     请求方式：POST    
     请求参数：见 [美服通用创建订单参数](#美服通用创建订单参数)    
-<!-- 
-    请求参数：
 
-|     参数     |  类型  |                             说明                              |
-| :----------: | :----: | :-----------------------------------------------------------: |
-| accessToken  | 字符串 |               必填，执行登录后返回的accessToken               |
-|    amount    | 字符串 |              必填，金额，日服金额为正整数字符串               |
-|  extraData   | 字符串 |                  必填，保留，填订单额外信息                   |
-| redirect_uri | 字符串 |             必填，订单完成后跳转GET地址，可带参数             |
-|  notifyUrl   | 字符串 | 必填，订单完成时POST通知地址，见[美服支付通知](#美服支付通知) |
-
-|         sign          | 字符串 |                        必填，验证参数                         |
-|       itemName        | 字符串 |                    必填，商品名，美服必填                     |
-|  encryptedCardNumber  | 字符串 |                    必填，加密后的信用卡号                     |
-| encryptedExpiryMonth  | 字符串 |                  必填，加密后的信用卡过期月                   |
-|  encryptedExpiryYear  | 字符串 |                  必填，加密后的信用卡过期年                   |
-| encryptedSecurityCode | 字符串 |                  必填，加密后的信用卡安全码                   | 
-
-
-> sign生成方式为请求参数accessToken，amount，extraData，redirect_uri，notifyUrl和KEY依次拼接后的MD5值，
-KEY的值为'111111'
--->
 
 4.    浏览器执行订单：
 ```javascript
