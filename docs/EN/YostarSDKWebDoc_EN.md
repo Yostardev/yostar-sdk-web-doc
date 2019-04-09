@@ -81,6 +81,7 @@ Yo.twitterAuth({
 | :-----------: | :----: | :----------------------: |
 | redirect_uri  | 字符串 | 登录返回跳转地址不带参数 |
 | openNewWindow |  整数  |      是否新窗口打开      |
+
 返回值地址栏GET参数：  
 
 | 参数  |  类型  |   说明    |
@@ -102,6 +103,7 @@ Yo.facebookAuth({
 | :-----------: | :----: | :----------------------: |
 | redirect_uri  | 字符串 | 登录返回跳转地址不带参数 |
 | openNewWindow |  整数  |      是否新窗口打开      |
+
 返回值地址栏GET参数：  
 
 | 参数  |  类型  |   说明    |
@@ -127,6 +129,7 @@ Yo.googleAuth({
 | :-----------: | :----: | :----------------------: |
 | redirect_uri  | 字符串 | 登录返回跳转地址不带参数 |
 | openNewWindow |  整数  |      是否新窗口打开      |
+
 返回值地址栏GET参数：  
 
 | 参数  |  类型  |   说明    |
@@ -173,6 +176,7 @@ Yo.submit({
 | :-----: | :----: | :--------: |
 | account | 字符串 |    邮箱    |
 |  code   | 字符串 | 邮箱验证码 |
+
 返回值:  
 
 |  参数  |  类型  |                                 说明                                 |
@@ -220,6 +224,7 @@ AccountLogin: function () {
 | :---------: | :----: | :-------------------: |
 |     uid     | 字符串 |          uid          |
 | accessToken | 字符串 | 登录获取的accessToken |
+
 返回值:  
 
 | 参数  |  类型  |            说明             |
@@ -309,6 +314,7 @@ Yo.execOrder({
 |    token    | 字符串 | 信用卡获取的response.tokenObject.token令牌 |
 |   orderId   | 字符串 |           创建订单的返回的订单号           |
 |   cardNo    | 字符串 |         用户输入的信用卡号，记录用         |
+
 返回：
 用户浏览器跳转到支付页面，完成后返回 redirect_uri，见[日服通用创建订单参数](#日服通用创建订单参数)
 
@@ -337,6 +343,7 @@ Yo.execOrder({
 | accessToken | 字符串 | 登录获取的accessToken  |
 |   orderId   | 字符串 | 创建订单的返回的订单号 |
 |  itemName   | 字符串 |       订单商品名       |
+
 返回：
 用户浏览器跳转到支付页面，完成后返回 redirect_uri，见[日服通用创建订单参数](#日服通用创建订单参数)
 
@@ -347,6 +354,7 @@ Yo.execOrder({
     请求方式：POST  
     请求参数：见 [日服通用创建订单参数](#日服通用创建订单参数)  
 *  浏览器执行订单：
+*  
 ```javascript
 Yo.execOrder({
     type: 'Au',
@@ -356,6 +364,7 @@ Yo.execOrder({
     itemName: this.itemName
 })
 ```
+
 请求参数  
 
 |    参数     |  类型  |          说明          |
@@ -376,7 +385,8 @@ Yo.execOrder({
     请求地址：${服务器地址}/gm/dcm/createOrder  
     请求方式：POST  
     请求参数：见 [日服通用创建订单参数](#日服通用创建订单参数)  
- *  浏览器执行订单：
+*  浏览器执行订单：
+
 ```javascript
 Yo.execOrder({
     type: 'Docomo',
@@ -385,7 +395,8 @@ Yo.execOrder({
     orderId: this.orderId,
 })
 ```
-请求参数  
+
+请求参数:  
 
 |    参数     |  类型  |          说明          |
 | :---------: | :----: | :--------------------: |
@@ -393,6 +404,7 @@ Yo.execOrder({
 |    lang     | 字符串 |        ja:日本         |
 | accessToken | 字符串 | 登录获取的accessToken  |
 |   orderId   | 字符串 | 创建订单的返回的订单号 |
+
 返回：
 用户浏览器跳转到支付页面，完成后返回 redirect_uri，见[日服通用创建订单参数](#日服通用创建订单参数)
 
@@ -419,6 +431,7 @@ Yo.execOrder({
 |    lang     | 字符串 |        ja:日本         |
 | accessToken | 字符串 | 登录获取的accessToken  |
 |   orderId   | 字符串 | 创建订单的返回的订单号 |
+
 返回：
 用户浏览器跳转到支付页面，完成后返回 redirect_uri，见[日服通用创建订单参数](#日服通用创建订单参数)
 
@@ -446,6 +459,7 @@ KEY的值为'111111'
 | orderId | 字符串 |                                    订单id                                    |
 | rdToken | 字符串 |                                 订单rdToken                                  |
 |  code   |  整数  | 创建失败时返回，<br>90001：未执行购买成功的订单过多，<br>90002：sign验证失败 |
+
 限制用户每小时创建未执行购买成功的订单超过60，则不返回orderId和rdToken，创建订单失败
 
 ## 日服支付通知
@@ -470,7 +484,8 @@ KEY的值为'111111'
     请求地址：${服务器地址}/direct/pp/createOrder  
     请求方式：POST  
     请求参数：见 [美服通用创建订单参数](#美服通用创建订单参数)  
-*  浏览器执行订单：
+*  浏览器执行订单：  
+
 ```javascript
 Yo.execOrder({
     type: 'Paypal',
@@ -479,6 +494,7 @@ Yo.execOrder({
     orderId: this.orderId
 })
 ```
+
 请求参数  
 
 |    参数     |  类型  |          说明          |
@@ -487,6 +503,7 @@ Yo.execOrder({
 |    lang     | 字符串 |        en:美国         |
 | accessToken | 字符串 | 登录获取的accessToken  |
 |   orderId   | 字符串 | 创建订单的返回的订单号 |
+
 返回：
 用户浏览器跳转到支付页面，完成后返回 redirect_uri，见[日服通用创建订单参数](#日服通用创建订单参数)
 
@@ -532,9 +549,8 @@ Yo.generateOriginKey({ originDomain: originDomain }, (err, data) => {
 ```
 
 
-2.  获取信用卡加密后的信息(Adyen)  
+2.  获取信用卡加密后的信息(Adyen):   
 ```html
-<!-- 示例代码 -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -585,7 +601,6 @@ Yo.generateOriginKey({ originDomain: originDomain }, (err, data) => {
   }
 </script>
 </html>
-
 ```
 
 
@@ -650,7 +665,8 @@ Yo.execOrder({
     请求参数：见 [美服通用创建订单参数](#美服通用创建订单参数)    
 
 2.  浏览器执行订单：  
-    执行方法：Yo.execOrder  
+    执行方法：Yo.execOrder    
+
 ```javascript
 Yo.execOrder({
     type: 'Adyen.Alipay',
@@ -658,15 +674,16 @@ Yo.execOrder({
     accessToken: this.loginInfo.accessToken,
     orderId: this.orderId,
 })
-```
+```  
+
 请求参数：
 
-|         参数          |  类型  |                 说明                 |
-| :-------------------: | :----: | :----------------------------------: |
-|         type          | 字符串 | 必填，'Adyen.Alipay'，美服支付宝支付 |
-|         lang          | 字符串 |           必填，'en'，美服           |
-|      accessToken      | 字符串 |  必填，执行登录后返回的accessToken   |
-|        orderId        | 字符串 |     必填，订单创建时获取的订单号     |
+|    参数     |  类型  |                 说明                 |
+| :---------: | :----: | :----------------------------------: |
+|    type     | 字符串 | 必填，'Adyen.Alipay'，美服支付宝支付 |
+|    lang     | 字符串 |           必填，'en'，美服           |
+| accessToken | 字符串 |  必填，执行登录后返回的accessToken   |
+|   orderId   | 字符串 |     必填，订单创建时获取的订单号     |
 
 > 测试账号： sandbox_forex1@alipay.com	   111111
 
@@ -684,12 +701,14 @@ Yo.execOrder({
 | :-----: | :----: | :---------: |
 | orderId | 字符串 |   订单id    |
 | rdToken | 字符串 | 订单rdToken |
+
 返回JSON:  
 
-| 参数  | 类型  |           说明           |
-| :---: | :---: | :----------------------: |
-| state | 整数  |   1：订单成功，其他：不成功   |
-| data  | JSON  | 订单信息，state为1时有效 |
+| 参数  | 类型  |           说明            |
+| :---: | :---: | :-----------------------: |
+| state | 整数  | 1：订单成功，其他：不成功 |
+| data  | JSON  | 订单信息，state为1时有效  |
+
 返回JSON的data参数：  
 
 |   参数    |  类型  |          说明           |
@@ -706,7 +725,7 @@ Yo.execOrder({
   
 日服：  
 * 令牌文件服务器地址 [https://p01.mul-pay.jp/ext/js/token.js](https://p01.mul-pay.jp/ext/js/token.js)
-* ShopID: ~~tshop00037465~~（待定）
+* ShopID: 9200000213740  
 
 美服：  
 * checkoutShopperUrl：~~[https://checkoutshopper-live.adyen.com](https://checkoutshopper-live.adyen.com)~~（待定）
