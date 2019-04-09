@@ -701,13 +701,13 @@ Yo.execOrder({
 
 ## 正式部署
 通用：
-* 服务器地址 [https://passport.mahjongsoul.com](https://passport.mahjongsoul.com)
+* 服务器地址 ~~[https://passport.mahjongsoul.com](https://passport.mahjongsoul.com)~~（待定）
 * 浏览器Javascript文件 yo_acc.prod_ja.js  
   
 日服：  
 * 令牌文件服务器地址 [https://p01.mul-pay.jp/ext/js/token.js](https://p01.mul-pay.jp/ext/js/token.js)
-* ShopID: tshop00037465
+* ShopID: ~~tshop00037465~~（待定）
 
 美服：  
-* checkoutShopperUrl：[https://checkoutshopper-live.adyen.com](https://checkoutshopper-live.adyen.com)
+* checkoutShopperUrl：~~[https://checkoutshopper-live.adyen.com](https://checkoutshopper-live.adyen.com)~~（待定）
 
