@@ -60,7 +60,6 @@
 
 /**
     美服信用卡支付：
-    // window.csf
     window.AdyenCheckout
 */
   <link rel="stylesheet" href="<%= checkoutShopperUrl %>/checkoutshopper/sdk/2.1.0/adyen.css" />
@@ -468,9 +467,10 @@ KEY的值为'111111'
 'content-type': 'application/x-www-form-urlencoded'  
 通知参数：  
 
-|  参数   |  类型  |  说明  |
-| :-----: | :----: | :----: |
-| orderId | 字符串 | 订单id |
+|   参数    |  类型  |         说明          |
+| :-------: | :----: | :-------------------: |
+|  orderId  | 字符串 |        订单id         |
+| extraData | 字符串 | 订单创建时的extraData |
     
 收到请求后，使用orderId查询订单状态，见[日服通用查询订单](#通用查询订单)   
 响应内容：
