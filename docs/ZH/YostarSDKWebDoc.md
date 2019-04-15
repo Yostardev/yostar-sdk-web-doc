@@ -3,6 +3,7 @@
 > [测试服务器地址](#测试服务器地址)  
 > [安装示例](#安装示例)  
 > [Twitter登录请求](#Twitter登录请求)  
+> [Twitter日本登录请求](#Twitter日本登录请求)  
 > [Facebook登录请求](#Facebook登录请求)  
 > [Google登录请求](#Google登录请求)  
 > [Yostar账号登录请求](#Yostar账号登录请求)  
@@ -87,6 +88,17 @@ Yo.twitterAuth({
 | :---: | :----: | :-------: |
 |  uid  | 字符串 |  用户uid  |
 | token | 字符串 | 登录token |
+
+## Twitter日本登录请求
+```javascript
+Yo.twitterJaAuth({
+    redirect_uri: this.redirect_uri,
+    openNewWindow: this.openNewWindow > 0
+});
+```
+请求方法： Yo.twitterJaAuth  
+
+参数说明见[Twitter登录请求](#Twitter登录请求)   
 
 
 ## Facebook登录请求
