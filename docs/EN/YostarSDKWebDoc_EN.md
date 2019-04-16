@@ -6,6 +6,7 @@
 > [Twitter日本登录请求](#Twitter日本登录请求)  
 > [Facebook登录请求](#Facebook登录请求)  
 > [Google登录请求](#Google登录请求)  
+> [Google日本登录请求](#Google日本登录请求)  
 > [Yostar账号登录请求](#Yostar账号登录请求)  
 > [执行登录](#执行登录)  
 > [验证uid,accessToken](#验证uid,accessToken)  
@@ -147,6 +148,19 @@ Yo.googleAuth({
 | :---: | :----: | :-------: |
 |  uid  | 字符串 |  用户uid  |
 | token | 字符串 | 登录token |
+
+
+## Google日本登录请求
+```javascript
+Yo.googleJaAuth({
+    redirect_uri: this.redirect_uri,
+    openNewWindow: this.openNewWindow > 0
+});
+```
+请求方法： Yo.googleJaAuth  
+
+参数说明见[Google登录请求](#Google登录请求)   
+
 
 
 ## Yostar账号登录请求
