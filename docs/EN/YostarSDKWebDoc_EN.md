@@ -78,10 +78,10 @@ Yo.twitterAuth({
 ```
 请求方法： Yo.twitterAuth  
 
-|     参数      |  类型  |           说明           |
-| :-----------: | :----: | :----------------------: |
-| redirect_uri  | 字符串 | 登录返回跳转地址不带参数 |
-| openNewWindow |  整数  |      是否新窗口打开      |
+|     参数      |  类型  |                说明                 |
+| :-----------: | :----: | :---------------------------------: |
+| redirect_uri  | 字符串 |      登录返回跳转地址不带参数       |
+| openNewWindow |  整数  | 是否新窗口打开，取值!!openNewWindow |
 
 返回值地址栏GET参数：  
 
@@ -327,6 +327,7 @@ Yo.execOrder({
     token: this.cardInfo.creditcardToken,
     orderId: this.orderId,
     cardNo: this.cardInfo.cardNo,
+    openNewWindow: this.openNewWindow > 0,
 })
 ```
 请求参数：  
@@ -356,18 +357,20 @@ Yo.execOrder({
     lang: this.payweblang,
     accessToken: this.loginInfo.accessToken,
     orderId: this.orderId,
-    itemName: this.itemName
+    itemName: this.itemName,
+    openNewWindow: this.openNewWindow > 0,
 })
 ```
 请求参数  
 
-|    参数     |  类型  |          说明          |
-| :---------: | :----: | :--------------------: |
-|    type     | 字符串 |     Paypal:Paypal      |
-|    lang     | 字符串 |        ja:日本         |
-| accessToken | 字符串 | 登录获取的accessToken  |
-|   orderId   | 字符串 | 创建订单的返回的订单号 |
-|  itemName   | 字符串 |       订单商品名       |
+|     参数      |  类型  |                说明                 |
+| :-----------: | :----: | :---------------------------------: |
+|     type      | 字符串 |            Paypal:Paypal            |
+|     lang      | 字符串 |               ja:日本               |
+|  accessToken  | 字符串 |        登录获取的accessToken        |
+|    orderId    | 字符串 |       创建订单的返回的订单号        |
+|   itemName    | 字符串 |             订单商品名              |
+| openNewWindow |  整数  | 是否新窗口打开，取值!!openNewWindow |
 
 返回：
 用户浏览器跳转到支付页面，完成后返回 redirect_uri，见[日服通用创建订单参数](#日服通用创建订单参数)
@@ -386,19 +389,21 @@ Yo.execOrder({
     lang: this.payweblang,
     accessToken: this.loginInfo.accessToken,
     orderId: this.orderId,
-    itemName: this.itemName
+    itemName: this.itemName,
+    openNewWindow: this.openNewWindow > 0,
 })
 ```
 
 请求参数  
 
-|    参数     |  类型  |          说明          |
-| :---------: | :----: | :--------------------: |
-|    type     | 字符串 |         Au:Au          |
-|    lang     | 字符串 |        ja:日本         |
-| accessToken | 字符串 | 登录获取的accessToken  |
-|   orderId   | 字符串 | 创建订单的返回的订单号 |
-|  itemName   | 字符串 |       订单商品名       |
+|     参数      |  类型  |                说明                 |
+| :-----------: | :----: | :---------------------------------: |
+|     type      | 字符串 |                Au:Au                |
+|     lang      | 字符串 |               ja:日本               |
+|  accessToken  | 字符串 |        登录获取的accessToken        |
+|    orderId    | 字符串 |       创建订单的返回的订单号        |
+|   itemName    | 字符串 |             订单商品名              |
+| openNewWindow |  整数  | 是否新窗口打开，取值!!openNewWindow |
 > 注：Au支付参数 itemName 所有字符必须是全角双字节字符    
 
 返回：
@@ -418,17 +423,19 @@ Yo.execOrder({
     lang: this.payweblang,
     accessToken: this.loginInfo.accessToken,
     orderId: this.orderId,
+    openNewWindow: this.openNewWindow > 0,
 })
 ```
 
 请求参数:  
 
-|    参数     |  类型  |          说明          |
-| :---------: | :----: | :--------------------: |
-|    type     | 字符串 |     Docomo:Docomo      |
-|    lang     | 字符串 |        ja:日本         |
-| accessToken | 字符串 | 登录获取的accessToken  |
-|   orderId   | 字符串 | 创建订单的返回的订单号 |
+|     参数      |  类型  |                说明                 |
+| :-----------: | :----: | :---------------------------------: |
+|     type      | 字符串 |            Docomo:Docomo            |
+|     lang      | 字符串 |               ja:日本               |
+|  accessToken  | 字符串 |        登录获取的accessToken        |
+|    orderId    | 字符串 |       创建订单的返回的订单号        |
+| openNewWindow |  整数  | 是否新窗口打开，取值!!openNewWindow |
 
 返回：
 用户浏览器跳转到支付页面，完成后返回 redirect_uri，见[日服通用创建订单参数](#日服通用创建订单参数)
@@ -446,16 +453,18 @@ Yo.execOrder({
     lang: this.payweblang,
     accessToken: this.loginInfo.accessToken,
     orderId: this.orderId,
+    openNewWindow: this.openNewWindow > 0,
 })
 ```
 请求参数  
 
-|    参数     |  类型  |          说明          |
-| :---------: | :----: | :--------------------: |
-|    type     | 字符串 |   Softbank:Softbank    |
-|    lang     | 字符串 |        ja:日本         |
-| accessToken | 字符串 | 登录获取的accessToken  |
-|   orderId   | 字符串 | 创建订单的返回的订单号 |
+|     参数      |  类型  |                说明                 |
+| :-----------: | :----: | :---------------------------------: |
+|     type      | 字符串 |          Softbank:Softbank          |
+|     lang      | 字符串 |               ja:日本               |
+|  accessToken  | 字符串 |        登录获取的accessToken        |
+|    orderId    | 字符串 |       创建订单的返回的订单号        |
+| openNewWindow |  整数  | 是否新窗口打开，取值!!openNewWindow |
 
 返回：
 用户浏览器跳转到支付页面，完成后返回 redirect_uri，见[日服通用创建订单参数](#日服通用创建订单参数)
@@ -517,18 +526,20 @@ Yo.execOrder({
     type: 'Paypal',
     lang: this.payweblang,
     accessToken: this.loginInfo.accessToken,
-    orderId: this.orderId
+    orderId: this.orderId,
+    openNewWindow: this.openNewWindow > 0,
 })
 ```
 
 请求参数  
 
-|    参数     |  类型  |          说明          |
-| :---------: | :----: | :--------------------: |
-|    type     | 字符串 |     Paypal:Paypal      |
-|    lang     | 字符串 |        en:美国         |
-| accessToken | 字符串 | 登录获取的accessToken  |
-|   orderId   | 字符串 | 创建订单的返回的订单号 |
+|     参数      |  类型  |                说明                 |
+| :-----------: | :----: | :---------------------------------: |
+|     type      | 字符串 |            Paypal:Paypal            |
+|     lang      | 字符串 |               en:美国               |
+|  accessToken  | 字符串 |        登录获取的accessToken        |
+|    orderId    | 字符串 |       创建订单的返回的订单号        |
+| openNewWindow |  整数  | 是否新窗口打开，取值!!openNewWindow |
 
 返回：
 用户浏览器跳转到支付页面，完成后返回 redirect_uri，见[日服通用创建订单参数](#日服通用创建订单参数)
@@ -562,7 +573,12 @@ Yo.execOrder({
 
 ```javascript
 // 示例
-let originDomain = window.location.href.replace(window.location.search, '').replace(window.location.pathname, '')
+// let originDomain = window.location.href.replace(window.location.search, '').replace(window.location.pathname, '')
+String.prototype.reverse = String.prototype.reverse || function() {
+  return this.split('').reverse().join('')
+}
+let originDomain = window.location.href.replace(window.location.search, '').reverse().replace(window.location.pathname.reverse(), '').reverse()
+
 Yo.generateOriginKey({ originDomain: originDomain }, (err, data) => {
     if (err) {
         console.error(err);
@@ -647,6 +663,7 @@ Yo.execOrder({
     encryptedExpiryMonth: this.Adyen.encryptedExpiryMonth,
     encryptedExpiryYear: this.Adyen.encryptedExpiryYear,
     encryptedSecurityCode: this.Adyen.encryptedSecurityCode,
+    openNewWindow: this.openNewWindow > 0,
 })
 ```
 请求参数：
@@ -678,17 +695,19 @@ Yo.execOrder({
     lang: 'en',
     accessToken: this.loginInfo.accessToken,
     orderId: this.orderId,
+    openNewWindow: this.openNewWindow > 0,
 })
 ```  
 
 请求参数：
 
-|    参数     |  类型  |                 说明                 |
-| :---------: | :----: | :----------------------------------: |
-|    type     | 字符串 | 必填，'Adyen.Alipay'，美服支付宝支付 |
-|    lang     | 字符串 |           必填，'en'，美服           |
-| accessToken | 字符串 |  必填，执行登录后返回的accessToken   |
-|   orderId   | 字符串 |     必填，订单创建时获取的订单号     |
+|     参数      |  类型  |                 说明                 |
+| :-----------: | :----: | :----------------------------------: |
+|     type      | 字符串 | 必填，'Adyen.Alipay'，美服支付宝支付 |
+|     lang      | 字符串 |           必填，'en'，美服           |
+|  accessToken  | 字符串 |  必填，执行登录后返回的accessToken   |
+|    orderId    | 字符串 |     必填，订单创建时获取的订单号     |
+| openNewWindow |  整数  | 是否新窗口打开，取值!!openNewWindow  |
 
 > 测试账号： sandbox_forex1@alipay.com	   111111
 
