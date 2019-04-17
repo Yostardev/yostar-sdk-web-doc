@@ -29,6 +29,8 @@
 > [美服通用创建订单参数](#美服通用创建订单参数)  
 > [美服支付通知](#美服支付通知)  
 
+> [Yo.execOrder额外参数](#Yo.execOrder额外参数)
+
 > [通用查询订单](#通用查询订单)  
 > [正式部署](#正式部署)  
 
@@ -484,7 +486,9 @@ Yo.execOrder({
 |     sign     | 字符串 |                        必填，验证参数                         |
 |   itemName   | 字符串 |                  商品名，美服必填，日服忽略                   |
 > sign生成方式为请求参数accessToken，amount，extraData，redirect_uri，notifyUrl和KEY依次拼接后的MD5值，
-KEY的值为'111111'
+KEY的值为'111111'  
+
+> 当redirect_uri传值为'Yo://CloseWindow'时（区分大小写），支付完成后关闭窗口，不跳转GET地址
 
 * 返回JSON：  
   
@@ -716,6 +720,36 @@ Yo.execOrder({
 
 ## 美服支付通知
 与[日服支付通知](#日服支付通知)相同  
+
+
+## Yo.execOrder额外参数
+| Yo.execOrder额外参数 | 类型  |      说明      |
+| :------------------: | :---: | :------------: |
+|  popupWindowOptions  | JSON  | 弹出式窗口参数 |
+
+| popupWindowOptions参数 |  类型  |                                                                       说明                                                                       |
+| :--------------------: | :----: | :----------------------------------------------------------------------------------------------------------------------------------------------: |
+|    isUsePopupWindow    |  布尔  |                                             是否使用弹出式窗口。如果值为否，则使用判断openNewWindow                                              |
+|   popupWindowParams    | 字符串 | window.open参数3， 默认值为"height=600, width=800, top=30%,left=30%, toolbar=no, menubar=no, scrollbars=no, resizable=no,location=no, status=no" |
+
+
+```javascript
+// 示例代码：
+Yo.execOrder({
+    type: 'Paypal',
+    lang: this.payweblang,
+    accessToken: this.accessTokenTest || this.loginInfo.accessToken,
+    orderId: this.orderId,
+    itemName: this.itemName,
+    openNewWindow: this.openNewWindow > 0,
+    popupWindowOptions: {
+        isUsePopupWindow: true,
+        popupWindowParams: "height=600, width=800, top=30%,left=30%, toolbar=no, menubar=no, scrollbars=no, resizable=no,location=no, status=no",
+    },
+})
+```  
+
+
 
 ## 通用查询订单
 请求地址：${服务器地址}/pm/info  
