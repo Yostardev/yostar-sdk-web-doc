@@ -35,6 +35,7 @@
 > [正式部署](#正式部署)  
 
 
+
 ## 测试服务器地址
 通用：
 * 服务器地址 [https://passporttest.mahjongsoul.com](https://passporttest.mahjongsoul.com)
@@ -789,4 +790,15 @@ Yo.execOrder({
 
 美服：  
 * checkoutShopperUrl：~~[https://checkoutshopper-live.adyen.com](https://checkoutshopper-live.adyen.com)~~（待定）
+
+
+配置：
+*  正式服，第三方登录，限制redirect_uri域名为  
+[game.mahjongsoul.com](game.mahjongsoul.com)  
+[mahjongsoul.game.yo-star.com](mahjongsoul.game.yo-star.com)  
+
+
+
+
+
 
