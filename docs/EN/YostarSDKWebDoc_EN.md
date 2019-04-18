@@ -792,13 +792,10 @@ Yo.execOrder({
 * checkoutShopperUrl：~~[https://checkoutshopper-live.adyen.com](https://checkoutshopper-live.adyen.com)~~（待定）
 
 
-配置：
+限制：
 *  正式服，第三方登录，限制redirect_uri域名为  
 [game.mahjongsoul.com](game.mahjongsoul.com)  
 [mahjongsoul.game.yo-star.com](mahjongsoul.game.yo-star.com)  
-
-
-
 
 
 
