@@ -781,7 +781,7 @@ Yo.execOrder({
 
 ## 正式部署
 通用：
-* 服务器地址 ~~[https://passport.mahjongsoul.com](https://passport.mahjongsoul.com)~~（待定）
+* 服务器地址 [https://passport.mahjongsoul.com](https://passport.mahjongsoul.com)
 * 浏览器Javascript文件 yo_acc.prod_ja.js  
   
 日服：  
@@ -789,11 +789,11 @@ Yo.execOrder({
 * ShopID: 9200000213740  
 
 美服：  
-* checkoutShopperUrl：~~[https://checkoutshopper-live.adyen.com](https://checkoutshopper-live.adyen.com)~~（待定）
+* checkoutShopperUrl：[https://checkoutshopper-live.adyen.com](https://checkoutshopper-live.adyen.com)
 
 
 限制：
-*  正式服，第三方登录，限制redirect_uri域名为  
+*  由于账号安全原因，正式服，第三方登录，限制redirect_uri域名为  
 [game.mahjongsoul.com](game.mahjongsoul.com)  
 [mahjongsoul.game.yo-star.com](mahjongsoul.game.yo-star.com)  
 
