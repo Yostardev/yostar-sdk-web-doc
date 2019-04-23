@@ -801,8 +801,8 @@ Yo.execOrder({
 [gcustest.mahjongsoul.com](gcustest.mahjongsoul.com)  
 [gcjptest.mahjongsoul.com](gcjptest.mahjongsoul.com)  
 
-* 由于正式服第三方支付限制，Yo.generateOriginKey({ originDomain: originDomain }，originDomain 只能控制台手动生成，现在只能取值  
+* ~~由于正式服第三方支付限制，Yo.generateOriginKey({ originDomain: originDomain }，originDomain 只能控制台手动生成，现在只能取值  
    https://mahjongsoul.game.yo-star.com   
    http://gcustest.mahjongsoul.com  
-   如果需要取其他值，需提前通知美服支付管理员生成与配置  
+   如果需要取其他值，需提前通知美服支付管理员生成与配置~~
 
