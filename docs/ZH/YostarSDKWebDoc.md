@@ -170,16 +170,18 @@ Yo.googleJaAuth({
 * 请求验证
 ```javascript
 Yo.request({
-    account: 'test@example.com'
+    account: 'test@example.com',
+    lang: 'en',
 }).then(function(data) {
     // data.result
 })
 ```
 请求方法： Yo.request  
 
-|  参数   |  类型  | 说明  |
-| :-----: | :----: | :---: |
-| account | 字符串 | 邮箱  |
+|  参数   |  类型  |         说明         |
+| :-----: | :----: | :------------------: |
+| account | 字符串 |         邮箱         |
+|  lang   | 字符串 | 语言：ja，en, 缺省ja |
 
 返回值:  
 
