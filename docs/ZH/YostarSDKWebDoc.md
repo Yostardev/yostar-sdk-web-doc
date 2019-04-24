@@ -8,7 +8,9 @@
 > [Google登录请求](#Google登录请求)  
 > [Google日本登录请求](#Google日本登录请求)  
 > [Yostar账号登录请求](#Yostar账号登录请求)  
+> [通用跳转登录返回参数](#通用跳转登录返回参数)  
 > [执行登录](#执行登录)  
+> [执行登录v2](#执行登录v2)  
 > [验证uid,accessToken](#验证uid,accessToken)  
 
 > [支付流程图](#支付流程图) 
@@ -78,6 +80,11 @@ Yo.twitterAuth({
     redirect_uri: this.redirect_uri,
     openNewWindow: this.openNewWindow > 0
 });
+Yo.twitterAuth({
+    redirect_uri: this.redirect_uri_2,
+    openNewWindow: this.openNewWindow > 0,
+    version: 2,
+});
 ```
 请求方法： Yo.twitterAuth  
 
@@ -85,13 +92,10 @@ Yo.twitterAuth({
 | :-----------: | :----: | :---------------------------------: |
 | redirect_uri  | 字符串 |      登录返回跳转地址不带参数       |
 | openNewWindow |  整数  | 是否新窗口打开，取值!!openNewWindow |
+|    version    |  整数  | 可选，版本号，取值：2  ，缺省值：1  |
 
-返回值地址栏GET参数：  
+返回值，见 [通用跳转登录返回参数](#通用跳转登录返回参数)  
 
-| 参数  |  类型  |   说明    |
-| :---: | :----: | :-------: |
-|  uid  | 字符串 |  用户uid  |
-| token | 字符串 | 登录token |
 
 ## Twitter日本登录请求
 ```javascript
@@ -99,17 +103,28 @@ Yo.twitterJaAuth({
     redirect_uri: this.redirect_uri,
     openNewWindow: this.openNewWindow > 0
 });
+Yo.twitterJaAuth({
+    redirect_uri: this.redirect_uri_2,
+    openNewWindow: this.openNewWindow > 0,
+    version: 2,
+});
 ```
 请求方法： Yo.twitterJaAuth  
 
 参数说明见[Twitter登录请求](#Twitter登录请求)   
 
+返回值，见 [通用跳转登录返回参数](#通用跳转登录返回参数)  
 
 ## Facebook登录请求
 ```javascript
 Yo.facebookAuth({
     redirect_uri: this.redirect_uri,
     openNewWindow: this.openNewWindow > 0
+});
+Yo.facebookAuth({
+    redirect_uri: this.redirect_uri_2,
+    openNewWindow: this.openNewWindow > 0,
+    version: 2,
 });
 ```
 请求方法： Yo.facebookAuth  
@@ -118,13 +133,9 @@ Yo.facebookAuth({
 | :-----------: | :----: | :----------------------: |
 | redirect_uri  | 字符串 | 登录返回跳转地址不带参数 |
 | openNewWindow |  整数  |      是否新窗口打开      |
+|    version    |  整数  | 可选，版本号，取值：2  ，缺省值：1  |
 
-返回值地址栏GET参数：  
-
-| 参数  |  类型  |   说明    |
-| :---: | :----: | :-------: |
-|  uid  | 字符串 |  用户uid  |
-| token | 字符串 | 登录token |
+返回值，见 [通用跳转登录返回参数](#通用跳转登录返回参数)  
 
 > Facebook登录测试账号：  
 > 登录名：epmyazwbux_1553655623@tfbnw.net  
@@ -137,6 +148,11 @@ Yo.googleAuth({
     redirect_uri: this.redirect_uri,
     openNewWindow: this.openNewWindow > 0
 });
+Yo.googleAuth({
+    redirect_uri: this.redirect_uri_2,
+    openNewWindow: this.openNewWindow > 0,
+    version: 2,
+});
 ```
 请求方法： Yo.googleAuth  
 
@@ -144,13 +160,9 @@ Yo.googleAuth({
 | :-----------: | :----: | :----------------------: |
 | redirect_uri  | 字符串 | 登录返回跳转地址不带参数 |
 | openNewWindow |  整数  |      是否新窗口打开      |
+|    version    |  整数  | 可选，版本号，取值：2  ，缺省值：1  |
 
-返回值地址栏GET参数：  
-
-| 参数  |  类型  |   说明    |
-| :---: | :----: | :-------: |
-|  uid  | 字符串 |  用户uid  |
-| token | 字符串 | 登录token |
+返回值，见 [通用跳转登录返回参数](#通用跳转登录返回参数)  
 
 
 ## Google日本登录请求
@@ -159,11 +171,17 @@ Yo.googleJaAuth({
     redirect_uri: this.redirect_uri,
     openNewWindow: this.openNewWindow > 0
 });
+Yo.googleJaAuth({
+    redirect_uri: this.redirect_uri_2,
+    openNewWindow: this.openNewWindow > 0,
+    version: 2,
+});
 ```
 请求方法： Yo.googleJaAuth  
 
 参数说明见[Google登录请求](#Google登录请求)   
 
+返回值，见 [通用跳转登录返回参数](#通用跳转登录返回参数)  
 
 
 ## Yostar账号登录请求
@@ -182,6 +200,7 @@ Yo.request({
 | :-----: | :----: | :----------------------: |
 | account | 字符串 |           邮箱           |
 |  lang   | 字符串 | 邮件语言：ja，en, 缺省en |
+|    version    |  整数  | 可选，版本号，取值：2  ，缺省值：1  |
 
 返回值:  
 
@@ -216,6 +235,17 @@ Yo.submit({
 | token  | 字符串 |                              登录token                               |
 
 
+## 通用跳转登录返回参数  
+
+返回值地址栏GET参数：  
+
+| 参数  |  类型  |   说明    |
+| :---: | :----: | :-------: |
+|  uid  | 字符串 |  用户uid，跳转请求参数version默认时返回  |
+| token | 字符串 | 登录token，跳转请求参数version默认时返回 |
+| codetoken | 字符串 | 参数codetoken，跳转请求参数version=2时返回   |
+
+
 ## 执行登录
 请求方法：Yo.login  
 
@@ -228,7 +258,7 @@ Yo.submit({
 
 |    参数     |  类型  |                                                  说明                                                   |
 | :---------: | :----: | :-----------------------------------------------------------------------------------------------------: |
-|   result    |  整数  | 0：成功，<br>1:验证失败，uid和token不匹配,<br>2:IP访问被限制,<br>~~3:设备号被封禁,~~<br>4:该UID已被封禁 |
+|   result    |  整数  | 0：成功，<br>1:验证失败，uid和token不匹配,<br>~~2:IP访问被限制,~~<br>~~3:设备号被封禁,~~<br>4:该UID已被封禁 |
 | accessToken | 字符串 |                              每次登录生成的accessToken，用于支付及其他请求                              |
 
 
@@ -245,6 +275,43 @@ AccountLogin: function () {
     }).catch(console.log)
 }
 ```
+
+## 执行登录v2  
+请求方法：Yo.loginV2  
+
+| 参数  |  类型  |       说明       |
+| :---: | :----: | :--------------: |
+|  codetoken  | 字符串 | 登录参数，有效次数：1 |
+
+返回值:  
+
+|    参数     |  类型  |                                                  说明                                                   |
+| :---------: | :----: | :-----------------------------------------------------------------------------------------------------: |
+|   result    |  整数  | 0：成功，<br>1:验证失败，uid和token不匹配,<br>4:该UID已被封禁，<br>5：codetoken无效或过期 |
+|  uid  | 字符串 | uid(用户id,唯一) |
+| token | 字符串 |    登录token     |
+| accessToken | 字符串 |                              每次登录生成的accessToken，用于支付及其他请求                              |
+
+```javascript
+// 示例
+if (this.codetoken) {
+    return Yo.loginV2({
+        codetoken: this.codetoken, // 有效次数一次
+    }).then(data0 => {
+        console.log(data0);
+        if (data0 && data0.uid) {
+            this.uid = data0.uid
+        }
+        if (data0 && data0.token) {
+            this.token = data0.token
+        }
+        this.codetoken = '';
+        this.loginInfo = data0;
+    });
+}
+```
+
+
 
 ## 验证uid,accessToken
 请求地址: ${服务器地址}/user/check  
