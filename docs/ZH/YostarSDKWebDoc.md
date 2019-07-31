@@ -570,7 +570,7 @@ Yo.execOrder({
 |  accessToken  | 字符串 |        登录获取的accessToken        |
 |    orderId    | 字符串 |       创建订单的返回的订单号        |
 | openNewWindow |  整数  | 是否新窗口打开，取值!!openNewWindow |
-| itemName      |  整数  |             订单商品名             |
+| itemName      | 字符串 |             订单商品名             |
 
 返回：
 用户浏览器跳转到支付页面，完成后返回 redirect_uri，见[日服通用创建订单参数](#日服通用创建订单参数)
