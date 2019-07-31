@@ -520,6 +520,7 @@ Yo.execOrder({
     请求方式：POST  
     请求参数：见 [日服通用创建订单参数](#日服通用创建订单参数)  
 *  浏览器执行订单：
+
 ```javascript
 Yo.execOrder({
     type: 'Softbank',
@@ -549,6 +550,7 @@ Yo.execOrder({
     请求方式：POST  
     请求参数：见 [日服通用创建订单参数](#日服通用创建订单参数)  
 *  浏览器执行订单：
+
 ```javascript
 Yo.execOrder({
     type: 'WebMoney',
