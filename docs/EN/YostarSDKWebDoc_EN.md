@@ -20,6 +20,7 @@
 > [日服Au支付](#日服Au支付)  
 > [日服Docomo支付](#日服Docomo支付)  
 > [日服Softbank支付](#日服Softbank支付)  
+> [日服WebMoney支付](#日服WebMoney支付)  
 > [日服通用创建订单参数](#日服通用创建订单参数)  
 > [日服支付通知](#日服支付通知)  
 
@@ -533,6 +534,36 @@ Yo.execOrder({
 |     参数      |  类型  |                说明                 |
 | :-----------: | :----: | :---------------------------------: |
 |     type      | 字符串 |          Softbank:Softbank          |
+|     lang      | 字符串 |               ja:日本               |
+|  accessToken  | 字符串 |        登录获取的accessToken        |
+|    orderId    | 字符串 |       创建订单的返回的订单号        |
+| openNewWindow |  整数  | 是否新窗口打开，取值!!openNewWindow |
+
+返回：
+用户浏览器跳转到支付页面，完成后返回 redirect_uri，见[日服通用创建订单参数](#日服通用创建订单参数)
+
+
+## 日服WebMoney支付
+*  服务器创建订单：  
+    请求地址：${服务器地址}/wm/wm/createOrder  
+    请求方式：POST  
+    请求参数：见 [日服通用创建订单参数](#日服通用创建订单参数)  
+ *  浏览器执行订单：
+```javascript
+Yo.execOrder({
+    type: 'WebMoney',
+    lang: this.payweblang,
+    accessToken: this.loginInfo.accessToken,
+    orderId: this.orderId,
+    openNewWindow: this.openNewWindow > 0,
+    itemName: this.itemName
+})
+```
+请求参数  
+
+|     参数      |  类型  |                说明                 |
+| :-----------: | :----: | :---------------------------------: |
+|     type      | 字符串 |          WebMoney:WebMoney          |
 |     lang      | 字符串 |               ja:日本               |
 |  accessToken  | 字符串 |        登录获取的accessToken        |
 |    orderId    | 字符串 |       创建订单的返回的订单号        |
