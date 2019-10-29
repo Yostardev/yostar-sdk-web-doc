@@ -297,7 +297,7 @@ Yo.linkYo({
 | accessToken | 字符串 |    登录生成的accessToken，用于支付及其他请求    |
 |  yostar_uid   | 字符串 |     邮箱用户id    |
 | yostar_token  | 字符串 |     邮箱用户token  |
-| yostar_account  | 字符串 |   邮箱用户账号  |
+| yostar_username  | 字符串 |   邮箱用户账号  |
 
 返回值:  
 
@@ -327,7 +327,7 @@ Yo.relinkYo({
 | token  | 字符串 |  登录token       |
 |  yostar_uid   | 字符串 |     邮箱用户id    |
 | yostar_token  | 字符串 |     邮箱用户token  |
-| yostar_account  | 字符串 |   邮箱用户账号  |
+| yostar_username  | 字符串 |   邮箱用户账号  |
 
 返回值:  
 
