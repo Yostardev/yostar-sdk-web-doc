@@ -8,6 +8,7 @@
 > [Google登录请求](#Google登录请求)  
 > [Google日本登录请求](#Google日本登录请求)  
 > [Yostar账号登录请求](#Yostar账号登录请求)  
+> [Yostar邮箱账号绑定已有账号请求流程](#Yostar邮箱账号绑定已有账号请求流程)  
 > [通用跳转登录返回参数](#通用跳转登录返回参数)  
 > [执行登录](#执行登录)  
 > [执行登录v2](#执行登录v2)  
@@ -231,9 +232,110 @@ Yo.submit({
 
 |  参数  |  类型  |                                 说明                                 |
 | :----: | :----: | :------------------------------------------------------------------: |
-| result |  整数  | 0：成功，<br>50016：失败,超时，或验证码不一致,<br>50009:失败次数过多 |
+| result |  整数  | 0：成功，<br>50016：失败,超时，或验证码不一致,<br>50009:失败次数过多,<br>50004:账户被封禁 |
 |  uid   | 字符串 |                               用户uid                                |
 | token  | 字符串 |                              登录token                               |
+
+
+
+## Yostar邮箱账号绑定已有账号请求流程  
+
+> 注：此账号不能有绑定的Yostar, 绑定信息见[执行登录](#执行登录), [执行登录v2](#执行登录v2) 返回值
+
+* 请求验证  
+请求方法： Yo.request   
+见 [Yostar账号登录请求](#Yostar账号登录请求)  
+
+* 获取Yostar绑定参数  
+
+```javascript
+Yo.authSubmit({
+    account: 'test@example.com',
+    code: '112233',
+}).then(function(data) {
+    // data.result
+    // data.yostar_uid
+    // data.yostar_token
+    // data.yostar_account
+})
+```
+
+请求方法： Yo.authSubmit  
+
+|  参数   |  类型  |    说明    |
+| :-----: | :----: | :--------: |
+| account | 字符串 |    邮箱    |
+|  code   | 字符串 | 邮箱验证码 |
+
+返回值:  
+
+|  参数  |  类型  |                                 说明                                 |
+| :----: | :----: | :------------------------------------------------------------------: |
+| result |  整数  | 0：成功，<br>50016：失败,超时，或验证码不一致,<br>50009:失败次数过多,<br>50004:账户被封禁 |
+|  yostar_uid   | 字符串 |     邮箱用户id(result=0时返回)     |
+| yostar_token  | 字符串 |     邮箱用户token(result=0时返回)  |
+| yostar_account  | 字符串 |   邮箱用户账号(result=0时返回,<br>绑定时的参数名是yostar_username)   |
+
+
+* 绑定Yostar请求1  
+
+```javascript
+Yo.linkYo({
+    accessToken: this.loginInfo.accessToken,
+    yostar_uid: this.loginInfo.yostar_uid,
+    yostar_token: this.loginInfo.yostar_token,
+    yostar_username: this.loginInfo.yostar_username,
+}).then(function(data) {
+    // data.result
+})
+```
+
+请求方法： Yo.linkYo  
+
+|  参数   |  类型  |    说明    |
+| :-----: | :----: | :--------: |
+| accessToken | 字符串 |    登录生成的accessToken，用于支付及其他请求    |
+|  yostar_uid   | 字符串 |     邮箱用户id    |
+| yostar_token  | 字符串 |     邮箱用户token  |
+| yostar_account  | 字符串 |   邮箱用户账号  |
+
+返回值:  
+
+|  参数  |  类型  |                    说明                           |
+| :----: | :----: | :------------------------------------------------------------------: |
+| result |  整数  | 0：成功，<br>1：此账号或提供的yostar账号已经绑定过其它的账号,<br>2：提供的yostar的token及uid错误,<br>1000：accessToken错误 |
+
+* 绑定Yostar请求2(覆盖绑定提供的Yostar邮箱账号,提供的Yostar邮箱账号原uid被替换)  
+
+```javascript
+Yo.relinkYo({
+    uid: this.loginInfo.uid,
+    token: this.loginInfo.token,
+    yostar_uid: this.loginInfo.yostar_uid,
+    yostar_token: this.loginInfo.yostar_token,
+    yostar_username: this.loginInfo.yostar_username,
+}).then(function(data) {
+    // data.result
+})
+```
+
+请求方法： Yo.relinkYo  
+
+|  参数   |  类型  |    说明    |
+| :-----: | :----: | :--------: |
+|  uid   | 字符串 |    用户uid           |
+| token  | 字符串 |  登录token       |
+|  yostar_uid   | 字符串 |     邮箱用户id    |
+| yostar_token  | 字符串 |     邮箱用户token  |
+| yostar_account  | 字符串 |   邮箱用户账号  |
+
+返回值:  
+
+|  参数  |  类型  |                    说明                           |
+| :----: | :----: | :------------------------------------------------------------------: |
+| result |  整数  | 0：成功，<br>1：提供的此账号已经绑定过其它的Yostar邮箱账号,<br>2：提供的yostar的token及uid错误,<br>3：验证失败，uid和token不匹配 |
+
+
 
 
 ## 通用跳转登录返回参数  
@@ -261,6 +363,14 @@ Yo.submit({
 | :---------: | :----: | :-----------------------------------------------------------------------------------------------------: |
 |   result    |  整数  | 0：成功，<br>1:验证失败，uid和token不匹配,<br>~~2:IP访问被限制,~~<br>~~3:设备号被封禁,~~<br>4:该UID已被封禁 |
 | accessToken | 字符串 |                              每次登录生成的accessToken，用于支付及其他请求                              |
+| twitter_username | 字符串 | 如果玩家已经绑定过tw了，就返回该值 |
+| twitter_id | 字符串 | 如果玩家已经绑定过tw了，就返回该值 |
+| facebook_username | 字符串 | 如果玩家已经绑定过fb了，就返回该值 |
+| facebook_uid | 字符串 | 如果玩家已经绑定过fb了，就返回该值 |
+| yostar_username | 字符串 | 如果玩家已经绑定过yostar了，就返回该值 |
+| yostar_uid | 字符串 | 如果玩家已经绑定过yostar了，就返回该值 |
+| google_username | 字符串 | 如果玩家已经绑定过google了，就返回该值 |
+| google_id | 字符串 | 如果玩家已经绑定过google了，就返回该值 |
 
 
 ```javascript
@@ -322,6 +432,14 @@ if (this.codetoken) {
 | :---------: | :----: | :-------------------: |
 |     uid     | 字符串 |          uid          |
 | accessToken | 字符串 | 登录获取的accessToken |
+| twitter_username | 字符串 | 如果玩家已经绑定过tw了，就返回该值 |
+| twitter_id | 字符串 | 如果玩家已经绑定过tw了，就返回该值 |
+| facebook_username | 字符串 | 如果玩家已经绑定过fb了，就返回该值 |
+| facebook_uid | 字符串 | 如果玩家已经绑定过fb了，就返回该值 |
+| yostar_username | 字符串 | 如果玩家已经绑定过yostar了，就返回该值 |
+| yostar_uid | 字符串 | 如果玩家已经绑定过yostar了，就返回该值 |
+| google_username | 字符串 | 如果玩家已经绑定过google了，就返回该值 |
+| google_id | 字符串 | 如果玩家已经绑定过google了，就返回该值 |
 
 返回值:  
 
