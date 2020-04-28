@@ -1046,6 +1046,7 @@ Yo.execOrder({
 [mahjongsoul.tournament.yo-star.com](mahjongsoul.tournament.yo-star.com)  
 [mjjpgs.mahjongsoul.com](mjjpgs.mahjongsoul.com)  
 [mjusgs.mahjongsoul.com](mjusgs.mahjongsoul.com)  
+[mjengs.mahjongsoul.com](mjengs.mahjongsoul.com)  
 
 * ~~由于正式服第三方支付限制，Yo.generateOriginKey({ originDomain: originDomain }，originDomain 只能控制台手动生成，现在只能取值  
    https://mahjongsoul.game.yo-star.com   
