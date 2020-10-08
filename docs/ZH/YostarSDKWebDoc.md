@@ -50,7 +50,7 @@
 
 日服：  
 * 令牌文件服务器地址 [https://pt01.mul-pay.jp/ext/js/token.js](https://pt01.mul-pay.jp/ext/js/token.js)
-* 令牌文件服务器地址，新地址，具有提高的响应速度 [https://static.mul-pay.jp/ext/js/token.js](https://static.mul-pay.jp/ext/js/token.js)
+* 令牌文件服务器地址，新地址，具有提高的响应速度 [https://stg.static.mul-pay.jp/ext/js/token.js](https://stg.static.mul-pay.jp/ext/js/token.js)
 * ShopID: tshop00037465  
 
 美服：  
@@ -1031,7 +1031,7 @@ Yo.execOrder({
   
 日服：  
 * 令牌文件服务器地址 [https://p01.mul-pay.jp/ext/js/token.js](https://p01.mul-pay.jp/ext/js/token.js)
-* 令牌文件服务器地址，新地址，具有提高的响应速度 [https://stg.static.mul-pay.jp/ext/js/token.js](https://stg.static.mul-pay.jp/ext/js/token.js)
+* 令牌文件服务器地址，新地址，具有提高的响应速度 [https://static.mul-pay.jp/ext/js/token.js](https://static.mul-pay.jp/ext/js/token.js)
 * ShopID: 9200000213740  
 
 美服：  
