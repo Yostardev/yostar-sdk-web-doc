@@ -754,6 +754,7 @@ Yo.execOrder({
 
 
 ## 日服Paypal支付2020软银
+*  测试账号及密码(可以用美服创建的沙盒账号)：test1@yo-star.com
 *  服务器创建订单：  
     请求地址：${服务器地址}/sbp/pp/createOrder  
     请求方式：POST  
