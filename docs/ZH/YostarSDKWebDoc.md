@@ -36,6 +36,10 @@
 > [美服Visa支付](#美服Visa支付)  
 > [美服JCB支付](#美服JCB支付)  
 > [美服支付宝支付](#美服支付宝支付)  
+
+> [美服信用卡Stripe渠道支付](#美服信用卡Stripe渠道支付)  
+> [美服支付宝Stripe渠道支付](#美服支付宝Stripe渠道支付)  
+
 > [美服通用创建订单参数](#美服通用创建订单参数)  
 > [美服支付通知](#美服支付通知)  
 
@@ -1122,6 +1126,38 @@ Yo.execOrder({
 | openNewWindow |  整数  | 是否新窗口打开，取值!!openNewWindow  |
 
 > 测试账号： sandbox_forex1@alipay.com	   111111
+
+## 美服信用卡Stripe渠道支付
+
+1.  服务器创建订单：  
+    请求地址：${服务器地址}/stripe/card/createOrder  
+    请求方式：POST    
+    请求参数：见 [美服通用创建订单参数](#美服通用创建订单参数)    
+
+
+2.    浏览器执行订单：
+```javascript
+Yo.execOrder({
+    type: 'Stripe.CreditCard',
+    lang: 'en',
+    accessToken: this.loginInfo.accessToken,
+    orderId: this.orderId,
+    openNewWindow: this.openNewWindow > 0,
+})
+```
+请求参数：
+
+|         参数          |  类型  |                   说明                   |
+| :-------------------: | :----: | :--------------------------------------: |
+|         type          | 字符串 | 必填，'Stripe.CreditCard'，美服信用卡支付 |
+|         lang          | 字符串 |             必填，'en'，美服             |
+|      accessToken      | 字符串 |    必填，执行登录后返回的accessToken     |
+|        orderId        | 字符串 |       必填，订单创建时获取的订单号       |
+|    openNewWindow      |  整数  |   是否新窗口打开，取值!!openNewWindow    |
+
+
+## 美服支付宝Stripe渠道支付
+
 
 ## 美服通用创建订单参数
 > 参考[日服通用创建订单参数](#日服通用创建订单参数)  
