@@ -1,5 +1,14 @@
 # Majsoul应用接口
 
+<div style="display:none;">
+<!-- https://yostardev.github.io/yostar-sdk-web-doc/#/ZH/YostarSDKWebDoc -->
+</div>
+
+|     日期      |  版本  |                说明                 |
+| :-----------: | :----: | :---------------------------------: |
+| 2021-11-05  | 1.01 |      新增 执行登录 返回值:5；新增 删除用户；新增 恢复等待删除的用户       |
+|   |  |       |
+
 > [测试服务器地址](#测试服务器地址)  
 > [安装示例](#安装示例)  
 > [Twitter登录请求](#Twitter登录请求)  
