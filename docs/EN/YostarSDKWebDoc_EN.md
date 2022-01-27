@@ -575,11 +575,13 @@ Yo.reborn({
 
 Yo.survey({
     accessToken: this.loginInfo.accessToken,
-    activity: "134415018", // 问卷id，获取方式为可邮件等，由运营配置
-    gameid: "112233", // 游戏id,相同问卷id不可重复提交问卷
+    activity: "134415018", // 问卷id，获取方式为可由邮件等，由运营配置
+    gameid: "112233", // 游戏id，相同问卷id不可重复提交问卷
 }).then(data0 => {
-    console.log(data0.result);
-    console.log(data0.wj_url);
+    console.log(data0);
+    if (data0.result === 0) {
+        // window.open(data0.wj_url)
+    }
 });
 ```
 
