@@ -803,6 +803,7 @@ Yo.execOrder({
 用户浏览器跳转到支付页面，完成后返回 redirect_uri，见[日服通用创建订单参数](#日服通用创建订单参数)
 
 
+<div style="display:none;">
 ## ~~日服PayPay支付~~
 *  服务器创建订单：  
     请求地址：${服务器地址}/gm/paypay/createOrder  
@@ -831,7 +832,7 @@ Yo.execOrder({
 
 返回：
 用户浏览器跳转到支付页面，完成后返回 redirect_uri，见[日服通用创建订单参数](#日服通用创建订单参数)
-
+</div>
 
 
 ## 日服WebMoney支付
