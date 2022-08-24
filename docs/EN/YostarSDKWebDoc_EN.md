@@ -4,11 +4,12 @@
 <!-- https://yostardev.github.io/yostar-sdk-web-doc/#/ZH/YostarSDKWebDoc -->
 </div>
 
-|     日期      |  版本  |                说明                 |
-| :-----------: | :----: | :---------------------------------: |
-| 2021-11-05  | 1.01 |      新增 执行登录 返回值:5；新增 删除用户；新增 恢复等待删除的用户       |
-| 2022-01-27  | 2.1.61 |  新增:获取问卷     |
-| 2022-07-12  | 2.1.65 |  新增:[日服PayPay支付](#日服PayPay支付) ,邮件语言新增支持kr表示韩语, 增加备注[日服Paypal支付](#日服Paypal支付)、[日服Au支付](#日服Au支付)、[日服Docomo支付](#日服Docomo支付)、[日服Softbank支付](#日服Softbank支付)     |
+|     日期     |   版本   |                                                                                                               说明                                                                                                               |
+|:----------:|:------:|:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|
+| 2021-11-05 |  1.01  |                                                                                               新增 执行登录 返回值:5；新增 删除用户；新增 恢复等待删除的用户                                                                                               |
+| 2022-01-27 | 2.1.61 |                                                                                                            新增:获取问卷                                                                                                             |
+| 2022-07-12 | 2.1.65 |                                     新增:[日服PayPay支付](#日服PayPay支付) ,邮件语言新增支持kr表示韩语, 增加备注[日服Paypal支付](#日服Paypal支付)、[日服Au支付](#日服Au支付)、[日服Docomo支付](#日服Docomo支付)、[日服Softbank支付](#日服Softbank支付)                                      |
+| 2022-08-24 | 2.1.66 | __是否需要调用游戏实名认证需要Web端游戏自身判断当前游戏是否是韩服__；<br/>增加[执行登录](#执行登录)接口返回值kr_kmc_status;<br/> 增加[当前账号韩国实名认证信息](#当前账号韩国实名认证信息)；<br/> 增加[发起韩国实名认证](#发起韩国实名认证)；<br/> 增加[韩服信用卡Stripe渠道支付](#韩服信用卡Stripe渠道支付)；<br/> 增加[韩服Paypal支付](#韩服Paypal支付) |
 
 > [测试服务器地址](#测试服务器地址)  
 > [安装示例](#安装示例)  
@@ -26,11 +27,13 @@
 > [验证uid,accessToken](#验证uid,accessToken)  
 > [删除用户](#删除用户)  
 > [恢复等待删除的用户](#恢复等待删除的用户)  
-> [获取问卷](#获取问卷)  
+> [获取问卷](#获取问卷)
+> [当前账号韩国实名认证信息](#当前账号韩国实名认证信息)
+> [发起韩国实名认证](#发起韩国实名认证)
 
 
 
-> [支付流程图](#支付流程图) 
+> [支付流程图](#支付流程图)
 
 > [日服浏览器CreditCard支付](#日服浏览器CreditCard支付)  
 > [日服Paypal支付](#日服Paypal支付)  
@@ -45,24 +48,27 @@
 > [日服Docomo支付2020软银](#日服Docomo支付2020软银)  
 > [日服Softbank支付2020软银](#日服Softbank支付2020软银)  
 > [日服通用创建订单参数](#日服通用创建订单参数)  
-> [日服支付通知](#日服支付通知)  
+> [日服支付通知](#日服支付通知)
 
 > [美服Paypal支付](#美服Paypal支付)  
 > [美服MasterCard支付](#美服MasterCard支付)  
 > [美服Visa支付](#美服Visa支付)  
 > [美服JCB支付](#美服JCB支付)  
-> [美服支付宝支付](#美服支付宝支付)  
+> [美服支付宝支付](#美服支付宝支付)
 
 > [美服信用卡Stripe渠道支付](#美服信用卡Stripe渠道支付)  
-> [美服支付宝Stripe渠道支付](#美服支付宝Stripe渠道支付)  
+> [美服支付宝Stripe渠道支付](#美服支付宝Stripe渠道支付)
 
 > [美服通用创建订单参数](#美服通用创建订单参数)  
-> [美服支付通知](#美服支付通知)  
+> [美服支付通知](#美服支付通知)
+
+> [韩服信用卡Stripe渠道支付](#韩服信用卡Stripe渠道支付)
+> [韩服Paypal支付](#韩服Paypal支付)
 
 > [Yo.execOrder额外参数](#Yo.execOrder额外参数)
 
 > [通用查询订单](#通用查询订单)  
-> [正式部署](#正式部署)  
+> [正式部署](#正式部署)
 
 > [其他返回值](#其他返回值)
 
@@ -71,37 +77,37 @@
 ## 测试服务器地址
 通用：
 * 服务器地址 [https://passporttest.mahjongsoul.com](https://passporttest.mahjongsoul.com)
-* 浏览器Javascript文件 yo_acc.stg_ja.js    
+* 浏览器Javascript文件 yo_acc.stg_ja.js
 
-日服：  
+日服：
 * 令牌文件服务器地址 [https://pt01.mul-pay.jp/ext/js/token.js](https://pt01.mul-pay.jp/ext/js/token.js)
 * 令牌文件服务器地址，新地址，具有提高的响应速度 [https://stg.static.mul-pay.jp/ext/js/token.js](https://stg.static.mul-pay.jp/ext/js/token.js)
-* ShopID: tshop00037465  
+* ShopID: tshop00037465
 
-美服：  
-* checkoutShopperUrl：[https://checkoutshopper-test.adyen.com](https://checkoutshopper-test.adyen.com)  
+美服：
+* checkoutShopperUrl：[https://checkoutshopper-test.adyen.com](https://checkoutshopper-test.adyen.com)
 
 
 
 ## 安装示例
 ```javascript
 /**
-    window.Yo
-*/
-<script src="${服务器地址}/js/${浏览器Javascript文件}"></script>  
+ window.Yo
+ */
+<script src="${服务器地址}/js/${浏览器Javascript文件}"></script>
 
 /**
-    日服信用卡支付：
-    window.Multipayment
-*/
+ 日服信用卡支付：
+ window.Multipayment
+ */
 <script src="${令牌文件服务器地址}"></script>
 
 /**
-    美服信用卡支付：
-    window.AdyenCheckout
-*/
-  <link rel="stylesheet" href="<%= checkoutShopperUrl %>/checkoutshopper/sdk/2.1.0/adyen.css" />
-  <script src="<%= checkoutShopperUrl %>/checkoutshopper/sdk/2.1.0/adyen.js"></script>
+ 美服信用卡支付：
+ window.AdyenCheckout
+ */
+<link rel="stylesheet" href="<%= checkoutShopperUrl %>/checkoutshopper/sdk/2.1.0/adyen.css" />
+<script src="<%= checkoutShopperUrl %>/checkoutshopper/sdk/2.1.0/adyen.js"></script>
 ```
 
 
@@ -117,7 +123,7 @@ Yo.twitterAuth({
     version: 2,
 });
 ```
-请求方法： Yo.twitterAuth  
+请求方法： Yo.twitterAuth
 
 |     参数      |  类型  |                说明                 |
 | :-----------: | :----: | :---------------------------------: |
@@ -125,7 +131,7 @@ Yo.twitterAuth({
 | openNewWindow |  整数  | 是否新窗口打开，取值!!openNewWindow |
 |    version    |  整数  | 可选，版本号，取值：2  ，缺省值：1  |
 
-返回值，见 [通用跳转登录返回参数](#通用跳转登录返回参数)  
+返回值，见 [通用跳转登录返回参数](#通用跳转登录返回参数)
 
 
 ## Twitter日本登录请求
@@ -140,11 +146,11 @@ Yo.twitterJaAuth({
     version: 2,
 });
 ```
-请求方法： Yo.twitterJaAuth  
+请求方法： Yo.twitterJaAuth
 
-参数说明见[Twitter登录请求](#Twitter登录请求)   
+参数说明见[Twitter登录请求](#Twitter登录请求)
 
-返回值，见 [通用跳转登录返回参数](#通用跳转登录返回参数)  
+返回值，见 [通用跳转登录返回参数](#通用跳转登录返回参数)
 
 ## Facebook登录请求
 ```javascript
@@ -158,7 +164,7 @@ Yo.facebookAuth({
     version: 2,
 });
 ```
-请求方法： Yo.facebookAuth  
+请求方法： Yo.facebookAuth
 
 |     参数      |  类型  |           说明           |
 | :-----------: | :----: | :----------------------: |
@@ -166,11 +172,11 @@ Yo.facebookAuth({
 | openNewWindow |  整数  |      是否新窗口打开      |
 |    version    |  整数  | 可选，版本号，取值：2  ，缺省值：1  |
 
-返回值，见 [通用跳转登录返回参数](#通用跳转登录返回参数)  
+返回值，见 [通用跳转登录返回参数](#通用跳转登录返回参数)
 
 > Facebook登录测试账号：  
 > 登录名：epmyazwbux_1553655623@tfbnw.net  
-> 密码：txODzEUfJqTq6Ssa  
+> 密码：txODzEUfJqTq6Ssa
 
 
 ## Google登录请求
@@ -185,7 +191,7 @@ Yo.googleAuth({
     version: 2,
 });
 ```
-请求方法： Yo.googleAuth  
+请求方法： Yo.googleAuth
 
 |     参数      |  类型  |           说明           |
 | :-----------: | :----: | :----------------------: |
@@ -193,7 +199,7 @@ Yo.googleAuth({
 | openNewWindow |  整数  |      是否新窗口打开      |
 |    version    |  整数  | 可选，版本号，取值：2  ，缺省值：1  |
 
-返回值，见 [通用跳转登录返回参数](#通用跳转登录返回参数)  
+返回值，见 [通用跳转登录返回参数](#通用跳转登录返回参数)
 
 
 ## Google日本登录请求
@@ -208,11 +214,11 @@ Yo.googleJaAuth({
     version: 2,
 });
 ```
-请求方法： Yo.googleJaAuth  
+请求方法： Yo.googleJaAuth
 
-参数说明见[Google登录请求](#Google登录请求)   
+参数说明见[Google登录请求](#Google登录请求)
 
-返回值，见 [通用跳转登录返回参数](#通用跳转登录返回参数)  
+返回值，见 [通用跳转登录返回参数](#通用跳转登录返回参数)
 
 
 ## Yostar账号登录请求
@@ -225,7 +231,7 @@ Yo.request({
     // data.result
 })
 ```
-请求方法： Yo.request  
+请求方法： Yo.request
 
 |  参数   |  类型  |           说明           |
 | :-----: | :----: | :----------------------: |
@@ -233,7 +239,7 @@ Yo.request({
 |  lang   | 字符串 | 邮件语言：ja，en，kr; 缺省en |
 |    version    |  整数  | 可选，版本号，取值：2  ，缺省值：1  |
 
-返回值:  
+返回值:
 
 |  参数  | 类型  |                           说明                            |
 | :----: | :---: | :-------------------------------------------------------: |
@@ -250,14 +256,14 @@ Yo.submit({
     // data.token
 })
 ```
-请求方法：Yo.submit  
+请求方法：Yo.submit
 
 |  参数   |  类型  |    说明    |
 | :-----: | :----: | :--------: |
 | account | 字符串 |    邮箱    |
 |  code   | 字符串 | 邮箱验证码 |
 
-返回值:  
+返回值:
 
 |  参数  |  类型  |                                 说明                                 |
 | :----: | :----: | :------------------------------------------------------------------: |
@@ -267,15 +273,15 @@ Yo.submit({
 
 
 
-## Yostar邮箱账号绑定已有账号请求流程  
+## Yostar邮箱账号绑定已有账号请求流程
 
 > 注：此账号不能有绑定的Yostar, 绑定信息见[执行登录](#执行登录), [执行登录v2](#执行登录v2) 返回值
 
 * 请求验证  
-请求方法： Yo.request   
-见 [Yostar账号登录请求](#Yostar账号登录请求)  
+  请求方法： Yo.request   
+  见 [Yostar账号登录请求](#Yostar账号登录请求)
 
-* 获取Yostar绑定参数  
+* 获取Yostar绑定参数
 
 ```javascript
 Yo.authSubmit({
@@ -289,14 +295,14 @@ Yo.authSubmit({
 })
 ```
 
-请求方法： Yo.authSubmit  
+请求方法： Yo.authSubmit
 
 |  参数   |  类型  |    说明    |
 | :-----: | :----: | :--------: |
 | account | 字符串 |    邮箱    |
 |  code   | 字符串 | 邮箱验证码 |
 
-返回值:  
+返回值:
 
 |  参数  |  类型  |                                 说明                                 |
 | :----: | :----: | :------------------------------------------------------------------: |
@@ -306,7 +312,7 @@ Yo.authSubmit({
 | yostar_account  | 字符串 |   邮箱用户账号(result=0时返回,<br>绑定时的参数名是yostar_username)   |
 
 
-* 绑定Yostar请求1  
+* 绑定Yostar请求1
 
 ```javascript
 Yo.linkYo({
@@ -319,7 +325,7 @@ Yo.linkYo({
 })
 ```
 
-请求方法： Yo.linkYo  
+请求方法： Yo.linkYo
 
 |  参数   |  类型  |    说明    |
 | :-----: | :----: | :--------: |
@@ -328,13 +334,13 @@ Yo.linkYo({
 | yostar_token  | 字符串 |     邮箱用户token  |
 | yostar_username  | 字符串 |   邮箱用户账号  |
 
-返回值:  
+返回值:
 
 |  参数  |  类型  |                    说明                           |
 | :----: | :----: | :------------------------------------------------------------------: |
 | result |  整数  | 0：成功，<br>1：此账号或提供的yostar账号已经绑定过其它的账号,<br>2：提供的yostar的token及uid错误,<br>1000：accessToken错误 |
 
-* 绑定Yostar请求2(覆盖绑定提供的Yostar邮箱账号,提供的Yostar邮箱账号原uid被替换)  
+* 绑定Yostar请求2(覆盖绑定提供的Yostar邮箱账号,提供的Yostar邮箱账号原uid被替换)
 
 ```javascript
 Yo.relinkYo({
@@ -348,7 +354,7 @@ Yo.relinkYo({
 })
 ```
 
-请求方法： Yo.relinkYo  
+请求方法： Yo.relinkYo
 
 |  参数   |  类型  |    说明    |
 | :-----: | :----: | :--------: |
@@ -358,7 +364,7 @@ Yo.relinkYo({
 | yostar_token  | 字符串 |     邮箱用户token  |
 | yostar_username  | 字符串 |   邮箱用户账号  |
 
-返回值:  
+返回值:
 
 |  参数  |  类型  |                    说明                           |
 | :----: | :----: | :------------------------------------------------------------------: |
@@ -368,7 +374,7 @@ Yo.relinkYo({
 
 ## Yostar邮箱账号解绑
 
-请求方法： Yo.unlinkYo  
+请求方法： Yo.unlinkYo
 
 |  参数   |  类型  |    说明    |
 | :-----: | :----: | :--------: |
@@ -377,18 +383,18 @@ Yo.relinkYo({
 | yostar_token  | 字符串 |     邮箱用户token  |
 | yostar_username  | 字符串 |   邮箱用户账号  |
 
-返回值:  
+返回值:
 
 |  参数  |  类型  |                    说明                           |
 | :----: | :----: | :------------------------------------------------------------------: |
 | result |  整数  | 0：成功，<br>1：提供的此账号没有绑定过Yostar邮箱账号,<br>2：提供的yostar的yostar_token及yostar_uid验证错误,<br>3：不可解绑，该项目环境需要至少绑定一个<br>1000：accessToken错误 |  
- 
 
 
 
-## 通用跳转登录返回参数  
 
-返回值地址栏GET参数：  
+## 通用跳转登录返回参数
+
+返回值地址栏GET参数：
 
 | 参数  |  类型  |   说明    |
 | :---: | :----: | :-------: |
@@ -398,29 +404,30 @@ Yo.relinkYo({
 
 
 ## 执行登录
-请求方法：Yo.login  
+请求方法：Yo.login
 
 | 参数  |  类型  |       说明       |
 | :---: | :----: | :--------------: |
 |  uid  | 字符串 | uid(用户id,唯一) |
 | token | 字符串 |    登录token     |
 
-返回值:  
+返回值:
 
-|    参数     |  类型  |                                                  说明                                                   |
-| :---------: | :----: | :-----------------------------------------------------------------------------------------------------: |
+|    参数     |  类型  |                                                                                        说明                                                                                        |
+| :---------: | :----: |:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|
 |   result    |  整数  | 0：成功，<br>1:验证失败，uid和token不匹配,<br>~~2:IP访问被限制,~~<br>~~3:设备号被封禁,~~<br>4:该UID已被封禁,<br>5:该UID已被用户请求删除，同时返回reborn_before_ms长整数，到达此时间戳（时间戳单位毫秒）才删除， current_timestamp_ms 返回当前时间戳(单位毫秒) |
-| reborn_before_ms | 数字 | 删除时间戳(单位毫秒)，如果result=5，就返回该值 |
-| current_timestamp_ms | 数字 | 当前时间戳(单位毫秒)，如果result=5，就返回该值 |
-| accessToken | 字符串 |                              每次登录生成的accessToken，用于支付及其他请求                              |
-| twitter_username | 字符串 | 如果玩家已经绑定过tw了，就返回该值 |
-| twitter_id | 字符串 | 如果玩家已经绑定过tw了，就返回该值 |
-| facebook_username | 字符串 | 如果玩家已经绑定过fb了，就返回该值 |
-| facebook_uid | 字符串 | 如果玩家已经绑定过fb了，就返回该值 |
-| yostar_username | 字符串 | 如果玩家已经绑定过yostar了，就返回该值 |
-| yostar_uid | 字符串 | 如果玩家已经绑定过yostar了，就返回该值 |
-| google_username | 字符串 | 如果玩家已经绑定过google了，就返回该值 |
-| google_id | 字符串 | 如果玩家已经绑定过google了，就返回该值 |
+| reborn_before_ms | 数字 |                                                                           删除时间戳(单位毫秒)，如果result=5，就返回该值                                                                           |
+| current_timestamp_ms | 数字 |                                                                           当前时间戳(单位毫秒)，如果result=5，就返回该值                                                                           |
+| accessToken | 字符串 |                                                                           每次登录生成的accessToken，用于支付及其他请求                                                                           |
+| twitter_username | 字符串 |                                                                                如果玩家已经绑定过tw了，就返回该值                                                                                |
+| twitter_id | 字符串 |                                                                                如果玩家已经绑定过tw了，就返回该值                                                                                |
+| facebook_username | 字符串 |                                                                                如果玩家已经绑定过fb了，就返回该值                                                                                |
+| facebook_uid | 字符串 |                                                                                如果玩家已经绑定过fb了，就返回该值                                                                                |
+| yostar_username | 字符串 |                                                                              如果玩家已经绑定过yostar了，就返回该值                                                                              |
+| yostar_uid | 字符串 |                                                                              如果玩家已经绑定过yostar了，就返回该值                                                                              |
+| google_username | 字符串 |                                                                              如果玩家已经绑定过google了，就返回该值                                                                              |
+| google_id | 字符串 |                                                                              如果玩家已经绑定过google了，就返回该值                                                                              |
+|  kr_kmc_status         |  数字   |                                                如果玩家登录成功result=0,返回kr_kmc_status该值,国账号的实名认证状态，登录成功时返回 2.1.66版本新增。取值范围 1：已实名，2：未实名                                                 |
 
 
 ```javascript
@@ -437,14 +444,14 @@ AccountLogin: function () {
 }
 ```
 
-## 执行登录v2  
-请求方法：Yo.loginV2  
+## 执行登录v2
+请求方法：Yo.loginV2
 
 | 参数  |  类型  |       说明       |
 | :---: | :----: | :--------------: |
 |  codetoken  | 字符串 | 登录参数，有效次数：1 |
 
-返回值:  
+返回值:
 
 |    参数     |  类型  |                                                  说明                                                   |
 | :---------: | :----: | :-----------------------------------------------------------------------------------------------------: |
@@ -476,7 +483,7 @@ if (this.codetoken) {
 
 ## 验证uid,accessToken
 请求地址: ${服务器地址}/user/check  
-请求方法: POST    
+请求方法: POST
 
 |    参数     |  类型  |         说明          |
 | :---------: | :----: | :-------------------: |
@@ -491,7 +498,7 @@ if (this.codetoken) {
 | google_username | 字符串 | 如果玩家已经绑定过google了，就返回该值 |
 | google_id | 字符串 | 如果玩家已经绑定过google了，就返回该值 |
 
-返回值:  
+返回值:
 
 | 参数  |  类型  |            说明             |
 | :---: | :----: | :-------------------------: |
@@ -502,7 +509,7 @@ if (this.codetoken) {
 
 ## 删除用户
 
-请求方法：Yo.destroy  
+请求方法：Yo.destroy
 
 | 参数  |  类型  |       说明       |
 | :---: | :----: | :--------------: |
@@ -510,7 +517,7 @@ if (this.codetoken) {
 | token | 字符串 |    登录token     |
 | accessToken | 字符串 |    登录获取的accessToken     |
 
-返回值:  
+返回值:
 
 |    参数     |  类型  |                                                  说明                                                   |
 | :---------: | :----: | :-----------------------------------------------------------------------------------------------------: |
@@ -531,14 +538,14 @@ Yo.destroy({
 
 ## 恢复等待删除的用户
 
-请求方法：Yo.reborn  
+请求方法：Yo.reborn
 
 | 参数  |  类型  |       说明       |
 | :---: | :----: | :--------------: |
 |  uid  | 字符串 | uid(用户id,唯一) |
 | token | 字符串 |    登录token     |
 
-返回值:  
+返回值:
 
 |    参数     |  类型  |                                                  说明                                                   |
 | :---------: | :----: | :-----------------------------------------------------------------------------------------------------: |
@@ -558,7 +565,7 @@ Yo.reborn({
 
 ## 获取问卷
 
-请求方法：Yo.survey  
+请求方法：Yo.survey
 
 | 参数  |  类型  |       说明       |
 | :---: | :----: | :--------------: |
@@ -566,7 +573,7 @@ Yo.reborn({
 | activity | 字符串 |    问卷id     |
 | gameid | 字符串 |    游戏id     |
 
-返回值:  
+返回值:
 
 |    参数     |  类型  |                                                  说明                                                   |
 | :---------: | :----: | :-----------------------------------------------------------------------------------------------------: |
@@ -589,8 +596,61 @@ Yo.survey({
 });
 ```
 
+## 当前账号韩国实名认证信息
+
+请求方法：Yo.kmcInfo
+
+| 参数  |  类型  |       说明       |
+| :---: | :----: | :--------------: |
+|  accessToken  | 字符串 | 登录获取的accessToken |
+
+返回值:
+
+|     参数    |  类型  |                       说明                        |
+|:----------:|:----:|:-----------------------------------------------:|
+|   result   |  整数  |  0：成功,<br> 1:不需要实名认证,<br> 1000:accessToken验证错误  |
+| kmc_status |  整数  | 当前uid实名验证的状态，1：已实名， 2：未实名。当值为1时代表已验证，不要再次发起实名验证 |
+| kmc_request_id | 字符串  |                 忽略，请求实名认证的连接参数                  |
 
 
+```javascript
+// 示例
+
+Yo.kmcInfo({
+   accessToken: this.loginInfo.accessToken,
+}).then(data0 => {
+   console.log(data0.result);
+   console.log(data0.kmc_status);
+});
+```
+
+## 发起韩国实名认证
+请求方法：Yo.kmcStart
+
+| 参数  |  类型  |       说明       |
+| :---: | :----: | :--------------: |
+|  accessToken  | 字符串 | 登录获取的accessToken |
+
+返回值:
+
+|     参数    |  类型  |                       说明                        |
+|:----------:|:----:|:-----------------------------------------------:|
+|   result   |  整数  |  0：成功,<br> 1:不需要实名认证,<br> 1000:accessToken验证错误  |
+| kmc_status |  整数  | 当前uid实名验证的状态，1：已实名， 2：未实名。当值为1时代表已验证，不要再次发起实名验证 |
+| kmc_request_id | 字符串  |                 忽略，请求实名认证的连接参数                  |
+
+> 注：仅当返回值的result=0、kmc_status=2时，会自动通过JavaScript打开弹出的新窗口跳转到韩国实名认证页面
+
+```javascript
+// 示例
+
+Yo.kmcStart({
+   accessToken: this.loginInfo.accessToken,
+}).then(data0 => {
+   console.log(data0.result);
+   console.log(data0.kmc_status);
+});
+```
 
 ## 支付流程图
 * 流程图地址 [https://swimlanes.io/u/OoyQdIV0O](https://swimlanes.io/u/OoyQdIV0O)
@@ -619,9 +679,9 @@ Multipayment.getToken(
 ```
 
 > Multipayment.init(ShopID);   
-> Multipayment.getToken( cardObject , callback )  
+> Multipayment.getToken( cardObject , callback )
 
-请求参数cardObject：  
+请求参数cardObject：
 
 |     参数     |  类型  |                                                                                     说明                                                                                      |
 | :----------: | :----: | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
@@ -630,14 +690,14 @@ Multipayment.getToken(
 | securitycode | 字符串 |                                                                              选填，安全吗，3-4位                                                                              |
 |  holdername  | 字符串 | 选填，持有人，字符类型：(half-width) <br>  Numeric characters/alphabets <br>(Uppercase/Lowercase)/<br>" " (Space), "," (Comma), "."(Period), “-” <br>(Hyphen), “/”(Slash) |
 
-Multipayment.getToken返回JSON：  
+Multipayment.getToken返回JSON：
 
 |    参数     |  类型  |        说明        |
 | :---------: | :----: | :----------------: |
 | resultCode  | 字符串 | 返回码,"000"：成功 |
 | tokenObject |  JSON  |  返回码成功时有效  |
 
-tokenObject参数：  
+tokenObject参数：
 
 |       参数        |  类型  |               说明                |
 | :---------------: | :----: | :-------------------------------: |
@@ -647,9 +707,9 @@ tokenObject参数：
 | isSecurityCodeSet | 布尔值 |            安全码设置             |
 
 *  服务器创建订单：   
-    请求地址：${服务器地址}/gm/cdcard/createOrder  
-    请求方式：POST  
-    请求参数：见 [日服通用创建订单参数](#日服通用创建订单参数)  
+   请求地址：${服务器地址}/gm/cdcard/createOrder  
+   请求方式：POST  
+   请求参数：见 [日服通用创建订单参数](#日服通用创建订单参数)
 
 *  浏览器执行订单：
 ```javascript
@@ -664,7 +724,7 @@ Yo.execOrder({
     openNewWindow: this.openNewWindow > 0,
 })
 ```
-请求参数：  
+请求参数：
 
 |    参数     |  类型  |                    说明                    |
 | :---------: | :----: | :----------------------------------------: |
@@ -681,9 +741,9 @@ Yo.execOrder({
 
 ## 日服Paypal支付
 *  服务器创建订单：  
-    请求地址：${服务器地址}/gm/pp/createOrder  
-    请求方式：POST  
-    请求参数：见 [日服通用创建订单参数](#日服通用创建订单参数)  
+   请求地址：${服务器地址}/gm/pp/createOrder  
+   请求方式：POST  
+   请求参数：见 [日服通用创建订单参数](#日服通用创建订单参数)
 *  浏览器执行订单：
 ```javascript
 Yo.execOrder({
@@ -695,7 +755,7 @@ Yo.execOrder({
     openNewWindow: this.openNewWindow > 0,
 })
 ```
-请求参数  
+请求参数
 
 |     参数      |  类型  |                说明                 |
 | :-----------: | :----: | :---------------------------------: |
@@ -712,11 +772,11 @@ Yo.execOrder({
 
 ## 日服Au支付
 *  服务器创建订单：  
-    请求地址：${服务器地址}/gm/au/createOrder  
-    请求方式：POST  
-    请求参数：见 [日服通用创建订单参数](#日服通用创建订单参数)  
+   请求地址：${服务器地址}/gm/au/createOrder  
+   请求方式：POST  
+   请求参数：见 [日服通用创建订单参数](#日服通用创建订单参数)
 *  浏览器执行订单：
-*  
+*
 ```javascript
 Yo.execOrder({
     type: 'Au',
@@ -728,7 +788,7 @@ Yo.execOrder({
 })
 ```
 
-请求参数  
+请求参数
 
 |     参数      |  类型  |                说明                 |
 | :-----------: | :----: | :---------------------------------: |
@@ -738,7 +798,7 @@ Yo.execOrder({
 |    orderId    | 字符串 |       创建订单的返回的订单号        |
 |   itemName    | 字符串 |             订单商品名              |
 | openNewWindow |  整数  | 是否新窗口打开，取值!!openNewWindow |
-> 注：Au支付参数 itemName 所有字符必须是全角双字节字符    
+> 注：Au支付参数 itemName 所有字符必须是全角双字节字符
 
 返回：
 用户浏览器跳转到支付页面，完成后返回 redirect_uri，见[日服通用创建订单参数](#日服通用创建订单参数)
@@ -747,9 +807,9 @@ Yo.execOrder({
 
 ## 日服Docomo支付
 *  服务器创建订单：  
-    请求地址：${服务器地址}/gm/dcm/createOrder  
-    请求方式：POST  
-    请求参数：见 [日服通用创建订单参数](#日服通用创建订单参数)  
+   请求地址：${服务器地址}/gm/dcm/createOrder  
+   请求方式：POST  
+   请求参数：见 [日服通用创建订单参数](#日服通用创建订单参数)
 *  浏览器执行订单：
 
 ```javascript
@@ -762,7 +822,7 @@ Yo.execOrder({
 })
 ```
 
-请求参数:  
+请求参数:
 
 |     参数      |  类型  |                说明                 |
 | :-----------: | :----: | :---------------------------------: |
@@ -779,9 +839,9 @@ Yo.execOrder({
 
 ## 日服Softbank支付
 *  服务器创建订单：  
-    请求地址：${服务器地址}/gm/sb/createOrder  
-    请求方式：POST  
-    请求参数：见 [日服通用创建订单参数](#日服通用创建订单参数)  
+   请求地址：${服务器地址}/gm/sb/createOrder  
+   请求方式：POST  
+   请求参数：见 [日服通用创建订单参数](#日服通用创建订单参数)
 *  浏览器执行订单：
 
 ```javascript
@@ -793,7 +853,7 @@ Yo.execOrder({
     openNewWindow: this.openNewWindow > 0,
 })
 ```
-请求参数  
+请求参数
 
 |     参数      |  类型  |                说明                 |
 | :-----------: | :----: | :---------------------------------: |
@@ -810,9 +870,9 @@ Yo.execOrder({
 
 ## 日服PayPay支付
 *  服务器创建订单：  
-    请求地址：${服务器地址}/gm/paypay/createOrder  
-    请求方式：POST  
-    请求参数：见 [日服通用创建订单参数](#日服通用创建订单参数)  
+   请求地址：${服务器地址}/gm/paypay/createOrder  
+   请求方式：POST  
+   请求参数：见 [日服通用创建订单参数](#日服通用创建订单参数)
 *  浏览器执行订单：
 
 ```javascript
@@ -824,7 +884,7 @@ Yo.execOrder({
     openNewWindow: this.openNewWindow > 0,
 })
 ```
-请求参数  
+请求参数
 
 |     参数      |  类型  |                说明                 |
 | :-----------: | :----: | :---------------------------------: |
@@ -842,9 +902,9 @@ Yo.execOrder({
 
 ## 日服WebMoney支付
 *  服务器创建订单：  
-    请求地址：${服务器地址}/wm/wm/createOrder  
-    请求方式：POST  
-    请求参数：见 [日服通用创建订单参数](#日服通用创建订单参数)  
+   请求地址：${服务器地址}/wm/wm/createOrder  
+   请求方式：POST  
+   请求参数：见 [日服通用创建订单参数](#日服通用创建订单参数)
 *  浏览器执行订单：
 
 ```javascript
@@ -857,7 +917,7 @@ Yo.execOrder({
     itemName: this.itemName
 })
 ```
-请求参数  
+请求参数
 
 |     参数      |  类型  |                说明                 |
 | :-----------: | :----: | :---------------------------------: |
@@ -874,9 +934,9 @@ Yo.execOrder({
 
 ## 日服浏览器CreditCard支付2020软银
 *  服务器创建订单：  
-    请求地址：${服务器地址}/sbp/cdcard/createOrder  
-    请求方式：POST  
-    请求参数：见 [日服通用创建订单参数](#日服通用创建订单参数)  
+   请求地址：${服务器地址}/sbp/cdcard/createOrder  
+   请求方式：POST  
+   请求参数：见 [日服通用创建订单参数](#日服通用创建订单参数)
 *  浏览器执行订单：
 ```javascript
 Yo.execOrder({
@@ -888,7 +948,7 @@ Yo.execOrder({
     openNewWindow: this.openNewWindow > 0,
 })
 ```
-请求参数  
+请求参数
 
 |     参数      |  类型  |                说明                 |
 | :-----------: | :----: | :---------------------------------: |
@@ -906,9 +966,9 @@ Yo.execOrder({
 ## 日服Paypal支付2020软银
 *  测试账号及密码(可以用美服创建的沙盒账号)：test1@yo-star.com
 *  服务器创建订单：  
-    请求地址：${服务器地址}/sbp/pp/createOrder  
-    请求方式：POST  
-    请求参数：见 [日服通用创建订单参数](#日服通用创建订单参数)  
+   请求地址：${服务器地址}/sbp/pp/createOrder  
+   请求方式：POST  
+   请求参数：见 [日服通用创建订单参数](#日服通用创建订单参数)
 *  浏览器执行订单：
 ```javascript
 Yo.execOrder({
@@ -920,7 +980,7 @@ Yo.execOrder({
     openNewWindow: this.openNewWindow > 0,
 })
 ```
-请求参数  
+请求参数
 
 |     参数      |  类型  |                说明                 |
 | :-----------: | :----: | :---------------------------------: |
@@ -937,11 +997,11 @@ Yo.execOrder({
 
 ## 日服Au支付2020软银
 *  服务器创建订单：  
-    请求地址：${服务器地址}/sbp/au/createOrder  
-    请求方式：POST  
-    请求参数：见 [日服通用创建订单参数](#日服通用创建订单参数)  
+   请求地址：${服务器地址}/sbp/au/createOrder  
+   请求方式：POST  
+   请求参数：见 [日服通用创建订单参数](#日服通用创建订单参数)
 *  浏览器执行订单：
-*  
+*
 ```javascript
 Yo.execOrder({
     type: 'Au$SBPayment',
@@ -953,7 +1013,7 @@ Yo.execOrder({
 })
 ```
 
-请求参数  
+请求参数
 
 |     参数      |  类型  |                说明                 |
 | :-----------: | :----: | :---------------------------------: |
@@ -970,9 +1030,9 @@ Yo.execOrder({
 
 ## 日服Docomo支付2020软银
 *  服务器创建订单：  
-    请求地址：${服务器地址}/sbp/dcm/createOrder  
-    请求方式：POST  
-    请求参数：见 [日服通用创建订单参数](#日服通用创建订单参数)  
+   请求地址：${服务器地址}/sbp/dcm/createOrder  
+   请求方式：POST  
+   请求参数：见 [日服通用创建订单参数](#日服通用创建订单参数)
 *  浏览器执行订单：
 
 ```javascript
@@ -985,7 +1045,7 @@ Yo.execOrder({
 })
 ```
 
-请求参数:  
+请求参数:
 
 |     参数      |  类型  |                说明                 |
 | :-----------: | :----: | :---------------------------------: |
@@ -1002,9 +1062,9 @@ Yo.execOrder({
 ## 日服Softbank支付2020软银
 *  测试账号及密码：08032116661 pass08032116661
 *  服务器创建订单：  
-    请求地址：${服务器地址}/sbp/sb/createOrder  
-    请求方式：POST  
-    请求参数：见 [日服通用创建订单参数](#日服通用创建订单参数)  
+   请求地址：${服务器地址}/sbp/sb/createOrder  
+   请求方式：POST  
+   请求参数：见 [日服通用创建订单参数](#日服通用创建订单参数)
 *  浏览器执行订单：
 
 ```javascript
@@ -1016,7 +1076,7 @@ Yo.execOrder({
     openNewWindow: this.openNewWindow > 0,
 })
 ```
-请求参数  
+请求参数
 
 |     参数      |  类型  |                说明                 |
 | :-----------: | :----: | :---------------------------------: |
@@ -1031,7 +1091,7 @@ Yo.execOrder({
 
 
 ## 日服通用创建订单参数
-* 请求参数：  
+* 请求参数：
 
 |     参数     |  类型  |                             说明                              |
 | :----------: | :----: | :-----------------------------------------------------------: |
@@ -1043,18 +1103,18 @@ Yo.execOrder({
 |     sign     | 字符串 |                        必填，验证参数                         |
 |   itemName   | 字符串 |                  商品名，美服必填，日服忽略                   |
 > sign生成方式为请求参数accessToken，amount，extraData，redirect_uri，notifyUrl和KEY依次拼接后的MD5值，
-KEY的值为'111111'  
+KEY的值为'111111'
 
 > 当redirect_uri传值为'Yo://CloseWindow'时（区分大小写），支付完成后关闭窗口，不跳转GET地址
 
-* 返回JSON：  
-  
-|  参数   |  类型  |                                                              说明                                                               |
-| :-----: | :----: | :-----------------------------------------------------------------------------------------------------------------------------: |
-| orderId | 字符串 |                                                             订单id                                                              |
-| rdToken | 字符串 |                                                           订单rdToken                                                           |
-|  code   |  整数  |                          创建失败时返回，<br>90001：未执行购买成功的订单过多，<br>90002：sign验证失败                           |
-| result  |  整数  | 创建失败时返回1000，accessToken已被新登录刷新，<br>需要重新登录（例如日服美服都先后登录），<br>重新登录见 [执行登录](#执行登录) |
+* 返回JSON：
+
+|  参数   |  类型  |                                                        说明                                                        |
+| :-----: | :----: |:----------------------------------------------------------------------------------------------------------------:|
+| orderId | 字符串 |                                                       订单id                                                       |
+| rdToken | 字符串 |                                                    订单rdToken                                                     |
+|  code   |  整数  |                                创建失败时返回，<br>90001：未执行购买成功的订单过多，<br>90002：sign验证失败                                 |
+| result  |  整数  | 1：需要韩服实名认证时返回； <br/> 1000：创建失败时返回，accessToken已被新登录刷新，需要重新登录（例如日服美服都先后登录），重新登录见 [执行登录](#执行登录); |
 
 限制用户每小时创建未执行购买成功的订单超过60，则不返回orderId和rdToken，创建订单失败
 
@@ -1062,26 +1122,26 @@ KEY的值为'111111'
 请求地址：日服创建订单时参数 ${notifyUrl}  
 请求方式：POST  
 'content-type': 'application/x-www-form-urlencoded'  
-通知参数：  
+通知参数：
 
 |   参数    |  类型  |         说明          |
 | :-------: | :----: | :-------------------: |
 |  orderId  | 字符串 |        订单id         |
 | extraData | 字符串 | 订单创建时的extraData |
-    
+
 收到请求后，使用orderId查询订单状态，见[日服通用查询订单](#通用查询订单)   
 响应内容：
-* 字符串 success 或者其他, 程序执行完后必须打印输出 “success” (不包含引号，不能加入换行符，缩进符等不可见字符)。如果商户反馈给Yostar的字符不是这7个字符,Yostar服务器会不断重发通知,一般情况下,24 小时以内完成12次通知。 
+* 字符串 success 或者其他, 程序执行完后必须打印输出 “success” (不包含引号，不能加入换行符，缩进符等不可见字符)。如果商户反馈给Yostar的字符不是这7个字符,Yostar服务器会不断重发通知,一般情况下,24 小时以内完成12次通知。
 * 程序执行完成后,该页面不能执行页面跳转。如果执行页面跳转,Yostar会收不到 success 字符,会被Yostar服务器判定为该页面程序运行出现异常, 而重发处理结果通知
 * 该方式的调试与运行必须在服务器上,即互联网上能访问
 
 
 ## 美服Paypal支付
 *  服务器创建订单：  
-    请求地址：${服务器地址}/direct/pp/createOrder  
-    请求方式：POST  
-    请求参数：见 [美服通用创建订单参数](#美服通用创建订单参数)  
-*  浏览器执行订单：  
+   请求地址：${服务器地址}/direct/pp/createOrder  
+   请求方式：POST  
+   请求参数：见 [美服通用创建订单参数](#美服通用创建订单参数)
+*  浏览器执行订单：
 
 ```javascript
 Yo.execOrder({
@@ -1093,7 +1153,7 @@ Yo.execOrder({
 })
 ```
 
-请求参数  
+请求参数
 
 |     参数      |  类型  |                说明                 |
 | :-----------: | :----: | :---------------------------------: |
@@ -1109,24 +1169,24 @@ Yo.execOrder({
 > 测试账号及密码：test1@yo-star.com
 
 ## 美服MasterCard支付
-> 见[美服信用卡支付](#美服信用卡支付)  
+> 见[美服信用卡支付](#美服信用卡支付)
 
 
 ## 美服MasterCard支付
 > 见[美服信用卡支付](#美服信用卡支付)  
-> 测试卡号 2222 4000 7000 0005    03/30   737  
+> 测试卡号 2222 4000 7000 0005    03/30   737
 
 ## 美服Visa支付
 > 见[美服信用卡支付](#美服信用卡支付)  
-> 测试卡号 4000 1600 0000 0004    03/30   737  
+> 测试卡号 4000 1600 0000 0004    03/30   737
 
 ## 美服JCB支付
 > 见[美服信用卡支付](#美服信用卡支付)  
-> 测试卡号 3569 9900 1009 5841    03/30   737  
+> 测试卡号 3569 9900 1009 5841    03/30   737
 
 ## 美服信用卡支付
 1.  获取Adyen信用卡支付渠道originKey  
-    请求方法Yo.generateOriginKey   
+    请求方法Yo.generateOriginKey
 
 |     参数     |  类型  |                                     说明                                     |
 | :----------: | :----: | :--------------------------------------------------------------------------: |
@@ -1153,7 +1213,7 @@ Yo.generateOriginKey({ originDomain: originDomain }, (err, data) => {
 ```
 
 
-2.  获取信用卡加密后的信息(Adyen):   
+2.  获取信用卡加密后的信息(Adyen):
 ```html
 <!DOCTYPE html>
 <html lang="en">
@@ -1211,7 +1271,7 @@ Yo.generateOriginKey({ originDomain: originDomain }, (err, data) => {
 3.  服务器创建订单：  
     请求地址：${服务器地址}/ay/mc/createOrder  
     请求方式：POST    
-    请求参数：见 [美服通用创建订单参数](#美服通用创建订单参数)    
+    请求参数：见 [美服通用创建订单参数](#美服通用创建订单参数)
 
 
 4.    浏览器执行订单：
@@ -1246,10 +1306,10 @@ Yo.execOrder({
 1.  服务器创建订单：  
     请求地址：${服务器地址}/ay/al/createOrder  
     请求方式：POST    
-    请求参数：见 [美服通用创建订单参数](#美服通用创建订单参数)    
+    请求参数：见 [美服通用创建订单参数](#美服通用创建订单参数)
 
 2.  浏览器执行订单：  
-    执行方法：Yo.execOrder    
+    执行方法：Yo.execOrder
 
 ```javascript
 Yo.execOrder({
@@ -1279,7 +1339,7 @@ Yo.execOrder({
 1.  服务器创建订单：  
     请求地址：${服务器地址}/stripe/card/createOrder  
     请求方式：POST    
-    请求参数：见 [美服通用创建订单参数](#美服通用创建订单参数)    
+    请求参数：见 [美服通用创建订单参数](#美服通用创建订单参数)
 
 
 2.    浏览器执行订单：
@@ -1305,7 +1365,7 @@ Yo.execOrder({
 > 测试卡号 VISA 4242424242424242 (CVC任意数字，日期任意将来日期)  
 > 测试卡号 Mastercard 5555555555554444 (CVC任意数字，日期任意将来日期)  
 > 测试卡号 JCB 3566002020360505 (CVC任意数字，日期任意将来日期)  
-> 参考文档地址 https://stripe.com/docs/testing#cards  
+> 参考文档地址 https://stripe.com/docs/testing#cards
 
 
 ## 美服支付宝Stripe渠道支付
@@ -1313,7 +1373,7 @@ Yo.execOrder({
 1.  服务器创建订单：  
     请求地址：${服务器地址}/stripe/ali/createOrder  
     请求方式：POST    
-    请求参数：见 [美服通用创建订单参数](#美服通用创建订单参数)    
+    请求参数：见 [美服通用创建订单参数](#美服通用创建订单参数)
 
 
 2.    浏览器执行订单：
@@ -1340,10 +1400,78 @@ Yo.execOrder({
 
 
 ## 美服通用创建订单参数
-> 参考[日服通用创建订单参数](#日服通用创建订单参数)  
+> 参考[日服通用创建订单参数](#日服通用创建订单参数)
 
 ## 美服支付通知
-与[日服支付通知](#日服支付通知)相同  
+与[日服支付通知](#日服支付通知)相同
+
+
+
+## 韩服信用卡Stripe渠道支付
+1.  服务器创建订单：  
+    请求地址：${服务器地址}/stripekr/card/createOrder  
+    请求方式：POST    
+    请求参数：见 [美服通用创建订单参数](#美服通用创建订单参数)
+
+2.    浏览器执行订单：
+```javascript
+Yo.execOrder({
+    type: 'Stripe.CreditCard',
+    lang: 'kr',
+    accessToken: this.loginInfo.accessToken,
+    orderId: this.orderId,
+    openNewWindow: this.openNewWindow > 0,
+})
+```
+请求参数：
+
+|         参数          |  类型  |                   说明                   |
+| :-------------------: | :----: | :--------------------------------------: |
+|         type          | 字符串 | 必填，'Stripe.CreditCard'，美服信用卡Stripe支付 |
+|         lang          | 字符串 |             必填，'en'，美服             |
+|      accessToken      | 字符串 |    必填，执行登录后返回的accessToken     |
+|        orderId        | 字符串 |       必填，订单创建时获取的订单号       |
+|    openNewWindow      |  整数  |   是否新窗口打开，取值!!openNewWindow    |
+
+> 测试卡号 VISA 4242424242424242 (CVC任意数字，日期任意将来日期)  
+> 测试卡号 Mastercard 5555555555554444 (CVC任意数字，日期任意将来日期)  
+> 测试卡号 JCB 3566002020360505 (CVC任意数字，日期任意将来日期)  
+> 参考文档地址 https://stripe.com/docs/testing#cards
+
+
+
+## 韩服Paypal支付
+> PayPal不支持韩元单位，货币单位使用美元 https://developer.paypal.com/reference/currency-codes/
+*  服务器创建订单：  
+   请求地址：${服务器地址}/directkr/pp/createOrder  
+   请求方式：POST  
+   请求参数：见 [日服通用创建订单参数](#日服通用创建订单参数)
+*  浏览器执行订单：
+
+```javascript
+Yo.execOrder({
+    type: 'Paypal',
+    lang: 'kr',
+    accessToken: this.loginInfo.accessToken,
+    orderId: this.orderId,
+    openNewWindow: this.openNewWindow > 0,
+})
+```
+
+请求参数
+
+|     参数      |  类型  |            说明             |
+| :-----------: | :----: |:-------------------------:|
+|     type      | 字符串 |       Paypal:Paypal       |
+|     lang      | 字符串 |           kr:韩国           |
+|  accessToken  | 字符串 |     登录获取的accessToken      |
+|    orderId    | 字符串 |        创建订单的返回的订单号        |
+| openNewWindow |  整数  | 是否新窗口打开，取值!!openNewWindow |
+
+返回：
+用户浏览器跳转到支付页面，完成后返回 redirect_uri，见[日服通用创建订单参数](#日服通用创建订单参数)
+
+> 测试账号及密码：test1@yo-star.com
 
 
 ## Yo.execOrder额外参数
@@ -1360,16 +1488,16 @@ Yo.execOrder({
 ```javascript
 // 示例代码：
 Yo.execOrder({
-    type: 'Paypal',
-    lang: this.payweblang,
-    accessToken: this.accessTokenTest || this.loginInfo.accessToken,
-    orderId: this.orderId,
-    itemName: this.itemName,
-    openNewWindow: this.openNewWindow > 0,
-    popupWindowOptions: {
-        isUsePopupWindow: true,
-        popupWindowParams: "height=600, width=800, top=30%,left=30%, toolbar=no, menubar=no, scrollbars=no, resizable=no,location=no, status=no",
-    },
+   type: 'Paypal',
+   lang: this.payweblang,
+   accessToken: this.accessTokenTest || this.loginInfo.accessToken,
+   orderId: this.orderId,
+   itemName: this.itemName,
+   openNewWindow: this.openNewWindow > 0,
+   popupWindowOptions: {
+      isUsePopupWindow: true,
+      popupWindowParams: "height=600, width=800, top=30%,left=30%, toolbar=no, menubar=no, scrollbars=no, resizable=no,location=no, status=no",
+   },
 })
 ```  
 
@@ -1377,21 +1505,21 @@ Yo.execOrder({
 
 ## 通用查询订单
 请求地址：${服务器地址}/pm/info  
-请求方式：POST  
+请求方式：POST
 
 |  参数   |  类型  |    说明     |
 | :-----: | :----: | :---------: |
 | orderId | 字符串 |   订单id    |
 | rdToken | 字符串 | 订单rdToken |
 
-返回JSON:  
+返回JSON:
 
 | 参数  | 类型  |             说明             |
 | :---: | :---: | :--------------------------: |
 | state | 整数  |  1：订单成功，其他：不成功   |
 | data  | JSON  | 订单信息，~~state为1时有效~~ |
 
-返回JSON的data参数：  
+返回JSON的data参数：
 
 |   参数    |  类型  |                 说明                 |
 | :-------: | :----: | :----------------------------------: |
@@ -1405,33 +1533,33 @@ Yo.execOrder({
 ## 正式部署
 通用：
 * 服务器地址 [https://passport.mahjongsoul.com](https://passport.mahjongsoul.com)
-* 浏览器Javascript文件 yo_acc.prod_ja.js  
-  
-日服：  
+* 浏览器Javascript文件 yo_acc.prod_ja.js
+
+日服：
 * 令牌文件服务器地址 [https://p01.mul-pay.jp/ext/js/token.js](https://p01.mul-pay.jp/ext/js/token.js)
 * 令牌文件服务器地址，新地址，具有提高的响应速度 [https://static.mul-pay.jp/ext/js/token.js](https://static.mul-pay.jp/ext/js/token.js)
-* ShopID: 9200000213740  
+* ShopID: 9200000213740
 
-美服：  
+美服：
 * checkoutShopperUrl：[https://checkoutshopper-live.adyen.com](https://checkoutshopper-live.adyen.com)
 
 
 限制：
 *  由于账号安全原因，正式服，第三方登录，限制redirect_uri域名为  
-[game.mahjongsoul.com](game.mahjongsoul.com)  
-[mahjongsoul.game.yo-star.com](mahjongsoul.game.yo-star.com)  
-[gcustest.mahjongsoul.com](gcustest.mahjongsoul.com)  
-[gcjptest.mahjongsoul.com](gcjptest.mahjongsoul.com)  
-[tournament.mahjongsoul.com](tournament.mahjongsoul.com)  
-[mahjongsoul.tournament.yo-star.com](mahjongsoul.tournament.yo-star.com)  
-[mjjpgs.mahjongsoul.com](mjjpgs.mahjongsoul.com)  
-[mjusgs.mahjongsoul.com](mjusgs.mahjongsoul.com)  
-[mjengs.mahjongsoul.com](mjengs.mahjongsoul.com)  
+   [game.mahjongsoul.com](game.mahjongsoul.com)  
+   [mahjongsoul.game.yo-star.com](mahjongsoul.game.yo-star.com)  
+   [gcustest.mahjongsoul.com](gcustest.mahjongsoul.com)  
+   [gcjptest.mahjongsoul.com](gcjptest.mahjongsoul.com)  
+   [tournament.mahjongsoul.com](tournament.mahjongsoul.com)  
+   [mahjongsoul.tournament.yo-star.com](mahjongsoul.tournament.yo-star.com)  
+   [mjjpgs.mahjongsoul.com](mjjpgs.mahjongsoul.com)  
+   [mjusgs.mahjongsoul.com](mjusgs.mahjongsoul.com)  
+   [mjengs.mahjongsoul.com](mjengs.mahjongsoul.com)
 
 * ~~由于正式服第三方支付限制，Yo.generateOriginKey({ originDomain: originDomain }，originDomain 只能控制台手动生成，现在只能取值  
-   https://mahjongsoul.game.yo-star.com   
-   http://gcustest.mahjongsoul.com  
-   如果需要取其他值，需提前通知美服支付管理员生成与配置~~
+  https://mahjongsoul.game.yo-star.com   
+  http://gcustest.mahjongsoul.com  
+  如果需要取其他值，需提前通知美服支付管理员生成与配置~~
 
 
 ## 其他返回值
