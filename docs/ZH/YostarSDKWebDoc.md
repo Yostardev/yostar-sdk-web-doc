@@ -4,12 +4,12 @@
 <!-- https://yostardev.github.io/yostar-sdk-web-doc/#/ZH/YostarSDKWebDoc -->
 </div>
 
-|     日期     |   版本   |                                                                                                                             说明                                                                                                                              |
-|:----------:|:------:|:-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|
-| 2021-11-05 |  1.01  |                                                                                                             新增 执行登录 返回值:5；新增 删除用户；新增 恢复等待删除的用户                                                                                                              |
-| 2022-01-27 | 2.1.61 |                                                                                                                           新增:获取问卷                                                                                                                           |
-| 2022-07-12 | 2.1.65 |                                                    新增:[日服PayPay支付](#日服PayPay支付) ,邮件语言新增支持kr表示韩语, 增加备注[日服Paypal支付](#日服Paypal支付)、[日服Au支付](#日服Au支付)、[日服Docomo支付](#日服Docomo支付)、[日服Softbank支付](#日服Softbank支付)                                                    |
-| 2022-08-24 | 2.1.66 | <div style="font-weight:bold;">是否需要调用游戏实名认证需要Web端游戏自身判断当前游戏是否是韩服</div>；<br/>增加[执行登录](#执行登录)接口返回值kr_kmc_status;<br/> 增加[当前账号韩国实名认证信息](#当前账号韩国实名认证信息)；<br/> 增加[发起韩国实名认证](#发起韩国实名认证)；<br/> 增加[韩服信用卡Stripe渠道支付](#韩服信用卡Stripe渠道支付)；<br/> 增加[韩服Paypal支付](#韩服Paypal支付) |
+|     日期     |   版本   |                                                                                                                            说明                                                                                                                            |
+|:----------:|:------:|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|
+| 2021-11-05 |  1.01  |                                                                                                            新增 执行登录 返回值:5；新增 删除用户；新增 恢复等待删除的用户                                                                                                            |
+| 2022-01-27 | 2.1.61 |                                                                                                                         新增:获取问卷                                                                                                                          |
+| 2022-07-12 | 2.1.65 |                                                  新增:[日服PayPay支付](#日服PayPay支付) ,邮件语言新增支持kr表示韩语, 增加备注[日服Paypal支付](#日服Paypal支付)、[日服Au支付](#日服Au支付)、[日服Docomo支付](#日服Docomo支付)、[日服Softbank支付](#日服Softbank支付)                                                   |
+| 2022-08-24 | 2.1.66 | <div style="font-weight:bold;">是否需要调用游戏实名认证需要Web端游戏判断是否韩服；</div>增加[执行登录](#执行登录)接口返回值kr_kmc_status;<br/> 增加[当前账号韩国实名认证信息](#当前账号韩国实名认证信息)；<br/> 增加[发起韩国实名认证](#发起韩国实名认证)；<br/> 增加[韩服信用卡Stripe渠道支付](#韩服信用卡Stripe渠道支付)；<br/> 增加[韩服Paypal支付](#韩服Paypal支付) |
 
 > [测试服务器地址](#测试服务器地址)  
 > [安装示例](#安装示例)  
@@ -92,35 +92,35 @@
 ## 安装示例
 ```javascript
 /**
-    window.Yo
-*/
-<script src="${服务器地址}/js/${浏览器Javascript文件}"></script>  
+ window.Yo
+ */
+<script src="${服务器地址}/js/${浏览器Javascript文件}"></script>
 
 /**
-    日服信用卡支付：
-    window.Multipayment
-*/
+ 日服信用卡支付：
+ window.Multipayment
+ */
 <script src="${令牌文件服务器地址}"></script>
 
 /**
-    美服信用卡支付：
-    window.AdyenCheckout
-*/
-  <link rel="stylesheet" href="<%= checkoutShopperUrl %>/checkoutshopper/sdk/2.1.0/adyen.css" />
-  <script src="<%= checkoutShopperUrl %>/checkoutshopper/sdk/2.1.0/adyen.js"></script>
+ 美服信用卡支付：
+ window.AdyenCheckout
+ */
+<link rel="stylesheet" href="<%= checkoutShopperUrl %>/checkoutshopper/sdk/2.1.0/adyen.css" />
+<script src="<%= checkoutShopperUrl %>/checkoutshopper/sdk/2.1.0/adyen.js"></script>
 ```
 
 
 ## Twitter登录请求
 ```javascript
 Yo.twitterAuth({
-    redirect_uri: this.redirect_uri,
-    openNewWindow: this.openNewWindow > 0
+   redirect_uri: this.redirect_uri,
+   openNewWindow: this.openNewWindow > 0
 });
 Yo.twitterAuth({
-    redirect_uri: this.redirect_uri_2,
-    openNewWindow: this.openNewWindow > 0,
-    version: 2,
+   redirect_uri: this.redirect_uri_2,
+   openNewWindow: this.openNewWindow > 0,
+   version: 2,
 });
 ```
 请求方法： Yo.twitterAuth
@@ -137,13 +137,13 @@ Yo.twitterAuth({
 ## Twitter日本登录请求
 ```javascript
 Yo.twitterJaAuth({
-    redirect_uri: this.redirect_uri,
-    openNewWindow: this.openNewWindow > 0
+   redirect_uri: this.redirect_uri,
+   openNewWindow: this.openNewWindow > 0
 });
 Yo.twitterJaAuth({
-    redirect_uri: this.redirect_uri_2,
-    openNewWindow: this.openNewWindow > 0,
-    version: 2,
+   redirect_uri: this.redirect_uri_2,
+   openNewWindow: this.openNewWindow > 0,
+   version: 2,
 });
 ```
 请求方法： Yo.twitterJaAuth
@@ -155,13 +155,13 @@ Yo.twitterJaAuth({
 ## Facebook登录请求
 ```javascript
 Yo.facebookAuth({
-    redirect_uri: this.redirect_uri,
-    openNewWindow: this.openNewWindow > 0
+   redirect_uri: this.redirect_uri,
+   openNewWindow: this.openNewWindow > 0
 });
 Yo.facebookAuth({
-    redirect_uri: this.redirect_uri_2,
-    openNewWindow: this.openNewWindow > 0,
-    version: 2,
+   redirect_uri: this.redirect_uri_2,
+   openNewWindow: this.openNewWindow > 0,
+   version: 2,
 });
 ```
 请求方法： Yo.facebookAuth
@@ -182,13 +182,13 @@ Yo.facebookAuth({
 ## Google登录请求
 ```javascript
 Yo.googleAuth({
-    redirect_uri: this.redirect_uri,
-    openNewWindow: this.openNewWindow > 0
+   redirect_uri: this.redirect_uri,
+   openNewWindow: this.openNewWindow > 0
 });
 Yo.googleAuth({
-    redirect_uri: this.redirect_uri_2,
-    openNewWindow: this.openNewWindow > 0,
-    version: 2,
+   redirect_uri: this.redirect_uri_2,
+   openNewWindow: this.openNewWindow > 0,
+   version: 2,
 });
 ```
 请求方法： Yo.googleAuth
@@ -205,13 +205,13 @@ Yo.googleAuth({
 ## Google日本登录请求
 ```javascript
 Yo.googleJaAuth({
-    redirect_uri: this.redirect_uri,
-    openNewWindow: this.openNewWindow > 0
+   redirect_uri: this.redirect_uri,
+   openNewWindow: this.openNewWindow > 0
 });
 Yo.googleJaAuth({
-    redirect_uri: this.redirect_uri_2,
-    openNewWindow: this.openNewWindow > 0,
-    version: 2,
+   redirect_uri: this.redirect_uri_2,
+   openNewWindow: this.openNewWindow > 0,
+   version: 2,
 });
 ```
 请求方法： Yo.googleJaAuth
@@ -225,10 +225,10 @@ Yo.googleJaAuth({
 * 请求验证
 ```javascript
 Yo.request({
-    account: 'test@example.com',
-    lang: 'en',
+   account: 'test@example.com',
+   lang: 'en',
 }).then(function(data) {
-    // data.result
+   // data.result
 })
 ```
 请求方法： Yo.request
@@ -248,12 +248,12 @@ Yo.request({
 * 提交验证
 ```javascript
 Yo.submit({
-    account: 'test@example.com',
-    code: '112233',
+   account: 'test@example.com',
+   code: '112233',
 }).then(function(data) {
-    // data.result
-    // data.uid
-    // data.token
+   // data.result
+   // data.uid
+   // data.token
 })
 ```
 请求方法：Yo.submit
@@ -285,13 +285,13 @@ Yo.submit({
 
 ```javascript
 Yo.authSubmit({
-    account: 'test@example.com',
-    code: '112233',
+   account: 'test@example.com',
+   code: '112233',
 }).then(function(data) {
-    // data.result
-    // data.yostar_uid
-    // data.yostar_token
-    // data.yostar_account
+   // data.result
+   // data.yostar_uid
+   // data.yostar_token
+   // data.yostar_account
 })
 ```
 
@@ -316,12 +316,12 @@ Yo.authSubmit({
 
 ```javascript
 Yo.linkYo({
-    accessToken: this.loginInfo.accessToken,
-    yostar_uid: this.loginInfo.yostar_uid,
-    yostar_token: this.loginInfo.yostar_token,
-    yostar_username: this.loginInfo.yostar_username,
+   accessToken: this.loginInfo.accessToken,
+   yostar_uid: this.loginInfo.yostar_uid,
+   yostar_token: this.loginInfo.yostar_token,
+   yostar_username: this.loginInfo.yostar_username,
 }).then(function(data) {
-    // data.result
+   // data.result
 })
 ```
 
@@ -344,13 +344,13 @@ Yo.linkYo({
 
 ```javascript
 Yo.relinkYo({
-    uid: this.loginInfo.uid,
-    token: this.loginInfo.token,
-    yostar_uid: this.loginInfo.yostar_uid,
-    yostar_token: this.loginInfo.yostar_token,
-    yostar_username: this.loginInfo.yostar_username,
+   uid: this.loginInfo.uid,
+   token: this.loginInfo.token,
+   yostar_uid: this.loginInfo.yostar_uid,
+   yostar_token: this.loginInfo.yostar_token,
+   yostar_username: this.loginInfo.yostar_username,
 }).then(function(data) {
-    // data.result
+   // data.result
 })
 ```
 
@@ -433,14 +433,14 @@ Yo.relinkYo({
 ```javascript
 // 示例
 AccountLogin: function () {
-    return Yo.login({
-        uid: this.uid,
-        token: this.token,
-        //deviceId,
-    }).then(data0 => {
-        console.log(data0);
-        this.loginInfo = data0;
-    }).catch(console.log)
+   return Yo.login({
+      uid: this.uid,
+      token: this.token,
+      //deviceId,
+   }).then(data0 => {
+      console.log(data0);
+      this.loginInfo = data0;
+   }).catch(console.log)
 }
 ```
 
@@ -463,19 +463,19 @@ AccountLogin: function () {
 ```javascript
 // 示例
 if (this.codetoken) {
-    return Yo.loginV2({
-        codetoken: this.codetoken, // 有效次数一次
-    }).then(data0 => {
-        console.log(data0);
-        if (data0 && data0.uid) {
-            this.uid = data0.uid
-        }
-        if (data0 && data0.token) {
-            this.token = data0.token
-        }
-        this.codetoken = '';
-        this.loginInfo = data0;
-    });
+   return Yo.loginV2({
+      codetoken: this.codetoken, // 有效次数一次
+   }).then(data0 => {
+      console.log(data0);
+      if (data0 && data0.uid) {
+         this.uid = data0.uid
+      }
+      if (data0 && data0.token) {
+         this.token = data0.token
+      }
+      this.codetoken = '';
+      this.loginInfo = data0;
+   });
 }
 ```
 
@@ -527,11 +527,11 @@ if (this.codetoken) {
 ```javascript
 // 示例
 Yo.destroy({
-    uid: this.uid,
-    token: this.token,
-    accessToken: this.loginInfo.accessToken
+   uid: this.uid,
+   token: this.token,
+   accessToken: this.loginInfo.accessToken
 }).then(data0 => {
-    console.log(data0.result);
+   console.log(data0.result);
 });
 ```
 
@@ -556,10 +556,10 @@ Yo.destroy({
 // 示例
 
 Yo.reborn({
-    uid: this.uid,
-    token: this.token,
+   uid: this.uid,
+   token: this.token,
 }).then(data0 => {
-    console.log(data0.result);
+   console.log(data0.result);
 });
 ```
 
@@ -585,14 +585,14 @@ Yo.reborn({
 // 示例
 
 Yo.survey({
-    accessToken: this.loginInfo.accessToken,
-    activity: "134415018", // 问卷id，获取方式为可由邮件等，由运营配置
-    gameid: "112233", // 游戏id，相同问卷id不可重复提交问卷
+   accessToken: this.loginInfo.accessToken,
+   activity: "134415018", // 问卷id，获取方式为可由邮件等，由运营配置
+   gameid: "112233", // 游戏id，相同问卷id不可重复提交问卷
 }).then(data0 => {
-    console.log(data0);
-    if (data0.result === 0) {
-        // window.open(data0.wj_url)
-    }
+   console.log(data0);
+   if (data0.result === 0) {
+      // window.open(data0.wj_url)
+   }
 });
 ```
 
@@ -662,19 +662,19 @@ Yo.kmcStart({
 let that = this;
 window.Multipayment.init("tshop00037465");
 Multipayment.getToken(
-    {
-        cardno: "4111111111111111",
-        expire: "1901",
-        securitycode: "123",
-        holdername: "Holdername"
-    }, function (response) {
-        if (response.resultCode != "000") {
-            window.alert('Error occurred during purchase process')
-        } else {
-            // 获取的信用卡token令牌
-            that.cardInfo.creditcardToken = response.tokenObject.token
+        {
+           cardno: "4111111111111111",
+           expire: "1901",
+           securitycode: "123",
+           holdername: "Holdername"
+        }, function (response) {
+           if (response.resultCode != "000") {
+              window.alert('Error occurred during purchase process')
+           } else {
+              // 获取的信用卡token令牌
+              that.cardInfo.creditcardToken = response.tokenObject.token
+           }
         }
-    }
 );
 ```
 
@@ -715,13 +715,13 @@ tokenObject参数：
 ```javascript
 // Example
 Yo.execOrder({
-    type: 'CreditCard',
-    lang: this.payweblang,
-    accessToken: this.loginInfo.accessToken,
-    token: this.cardInfo.creditcardToken,
-    orderId: this.orderId,
-    cardNo: this.cardInfo.cardNo,
-    openNewWindow: this.openNewWindow > 0,
+   type: 'CreditCard',
+   lang: this.payweblang,
+   accessToken: this.loginInfo.accessToken,
+   token: this.cardInfo.creditcardToken,
+   orderId: this.orderId,
+   cardNo: this.cardInfo.cardNo,
+   openNewWindow: this.openNewWindow > 0,
 })
 ```
 请求参数：
@@ -747,12 +747,12 @@ Yo.execOrder({
 *  浏览器执行订单：
 ```javascript
 Yo.execOrder({
-    type: 'Paypal',
-    lang: this.payweblang,
-    accessToken: this.loginInfo.accessToken,
-    orderId: this.orderId,
-    itemName: this.itemName,
-    openNewWindow: this.openNewWindow > 0,
+   type: 'Paypal',
+   lang: this.payweblang,
+   accessToken: this.loginInfo.accessToken,
+   orderId: this.orderId,
+   itemName: this.itemName,
+   openNewWindow: this.openNewWindow > 0,
 })
 ```
 请求参数
@@ -779,12 +779,12 @@ Yo.execOrder({
 *
 ```javascript
 Yo.execOrder({
-    type: 'Au',
-    lang: this.payweblang,
-    accessToken: this.loginInfo.accessToken,
-    orderId: this.orderId,
-    itemName: this.itemName,
-    openNewWindow: this.openNewWindow > 0,
+   type: 'Au',
+   lang: this.payweblang,
+   accessToken: this.loginInfo.accessToken,
+   orderId: this.orderId,
+   itemName: this.itemName,
+   openNewWindow: this.openNewWindow > 0,
 })
 ```
 
@@ -814,11 +814,11 @@ Yo.execOrder({
 
 ```javascript
 Yo.execOrder({
-    type: 'Docomo',
-    lang: this.payweblang,
-    accessToken: this.loginInfo.accessToken,
-    orderId: this.orderId,
-    openNewWindow: this.openNewWindow > 0,
+   type: 'Docomo',
+   lang: this.payweblang,
+   accessToken: this.loginInfo.accessToken,
+   orderId: this.orderId,
+   openNewWindow: this.openNewWindow > 0,
 })
 ```
 
@@ -846,11 +846,11 @@ Yo.execOrder({
 
 ```javascript
 Yo.execOrder({
-    type: 'Softbank',
-    lang: this.payweblang,
-    accessToken: this.loginInfo.accessToken,
-    orderId: this.orderId,
-    openNewWindow: this.openNewWindow > 0,
+   type: 'Softbank',
+   lang: this.payweblang,
+   accessToken: this.loginInfo.accessToken,
+   orderId: this.orderId,
+   openNewWindow: this.openNewWindow > 0,
 })
 ```
 请求参数
@@ -877,11 +877,11 @@ Yo.execOrder({
 
 ```javascript
 Yo.execOrder({
-    type: 'PayPay',
-    lang: this.payweblang,
-    accessToken: this.loginInfo.accessToken,
-    orderId: this.orderId,
-    openNewWindow: this.openNewWindow > 0,
+   type: 'PayPay',
+   lang: this.payweblang,
+   accessToken: this.loginInfo.accessToken,
+   orderId: this.orderId,
+   openNewWindow: this.openNewWindow > 0,
 })
 ```
 请求参数
@@ -909,12 +909,12 @@ Yo.execOrder({
 
 ```javascript
 Yo.execOrder({
-    type: 'WebMoney',
-    lang: this.payweblang,
-    accessToken: this.loginInfo.accessToken,
-    orderId: this.orderId,
-    openNewWindow: this.openNewWindow > 0,
-    itemName: this.itemName
+   type: 'WebMoney',
+   lang: this.payweblang,
+   accessToken: this.loginInfo.accessToken,
+   orderId: this.orderId,
+   openNewWindow: this.openNewWindow > 0,
+   itemName: this.itemName
 })
 ```
 请求参数
@@ -940,12 +940,12 @@ Yo.execOrder({
 *  浏览器执行订单：
 ```javascript
 Yo.execOrder({
-    type: 'CreditCard$SBPayment',
-    lang: this.payweblang,
-    accessToken: this.loginInfo.accessToken,
-    orderId: this.orderId,
-    itemName: this.itemName,
-    openNewWindow: this.openNewWindow > 0,
+   type: 'CreditCard$SBPayment',
+   lang: this.payweblang,
+   accessToken: this.loginInfo.accessToken,
+   orderId: this.orderId,
+   itemName: this.itemName,
+   openNewWindow: this.openNewWindow > 0,
 })
 ```
 请求参数
@@ -972,12 +972,12 @@ Yo.execOrder({
 *  浏览器执行订单：
 ```javascript
 Yo.execOrder({
-    type: 'Paypal$SBPayment',
-    lang: this.payweblang,
-    accessToken: this.loginInfo.accessToken,
-    orderId: this.orderId,
-    itemName: this.itemName,
-    openNewWindow: this.openNewWindow > 0,
+   type: 'Paypal$SBPayment',
+   lang: this.payweblang,
+   accessToken: this.loginInfo.accessToken,
+   orderId: this.orderId,
+   itemName: this.itemName,
+   openNewWindow: this.openNewWindow > 0,
 })
 ```
 请求参数
@@ -1004,12 +1004,12 @@ Yo.execOrder({
 *
 ```javascript
 Yo.execOrder({
-    type: 'Au$SBPayment',
-    lang: this.payweblang,
-    accessToken: this.loginInfo.accessToken,
-    orderId: this.orderId,
-    itemName: this.itemName,
-    openNewWindow: this.openNewWindow > 0,
+   type: 'Au$SBPayment',
+   lang: this.payweblang,
+   accessToken: this.loginInfo.accessToken,
+   orderId: this.orderId,
+   itemName: this.itemName,
+   openNewWindow: this.openNewWindow > 0,
 })
 ```
 
@@ -1037,11 +1037,11 @@ Yo.execOrder({
 
 ```javascript
 Yo.execOrder({
-    type: 'Docomo$SBPayment',
-    lang: this.payweblang,
-    accessToken: this.loginInfo.accessToken,
-    orderId: this.orderId,
-    openNewWindow: this.openNewWindow > 0,
+   type: 'Docomo$SBPayment',
+   lang: this.payweblang,
+   accessToken: this.loginInfo.accessToken,
+   orderId: this.orderId,
+   openNewWindow: this.openNewWindow > 0,
 })
 ```
 
@@ -1069,11 +1069,11 @@ Yo.execOrder({
 
 ```javascript
 Yo.execOrder({
-    type: 'Softbank$SBPayment',
-    lang: this.payweblang,
-    accessToken: this.loginInfo.accessToken,
-    orderId: this.orderId,
-    openNewWindow: this.openNewWindow > 0,
+   type: 'Softbank$SBPayment',
+   lang: this.payweblang,
+   accessToken: this.loginInfo.accessToken,
+   orderId: this.orderId,
+   openNewWindow: this.openNewWindow > 0,
 })
 ```
 请求参数
@@ -1145,11 +1145,11 @@ KEY的值为'111111'
 
 ```javascript
 Yo.execOrder({
-    type: 'Paypal',
-    lang: this.payweblang,
-    accessToken: this.loginInfo.accessToken,
-    orderId: this.orderId,
-    openNewWindow: this.openNewWindow > 0,
+   type: 'Paypal',
+   lang: this.payweblang,
+   accessToken: this.loginInfo.accessToken,
+   orderId: this.orderId,
+   openNewWindow: this.openNewWindow > 0,
 })
 ```
 
@@ -1197,18 +1197,18 @@ Yo.execOrder({
 // 示例
 // let originDomain = window.location.href.replace(window.location.search, '').replace(window.location.pathname, '')
 String.prototype.reverse = String.prototype.reverse || function() {
-  return this.split('').reverse().join('')
+   return this.split('').reverse().join('')
 }
 let originDomain = window.location.href.replace(window.location.search, '').reverse().replace(window.location.pathname.reverse(), '').reverse()
 
 Yo.generateOriginKey({ originDomain: originDomain }, (err, data) => {
-    if (err) {
-        console.error(err);
-    } else {
-        let originKey = data.originKeys[originDomain]
-        // save originKey
-        this.Adyen.originKey = originKey;
-    }
+   if (err) {
+      console.error(err);
+   } else {
+      let originKey = data.originKeys[originDomain]
+      // save originKey
+      this.Adyen.originKey = originKey;
+   }
 });
 ```
 
@@ -1218,51 +1218,51 @@ Yo.generateOriginKey({ originDomain: originDomain }, (err, data) => {
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Title</title>
-  <link rel="stylesheet" href="<%= checkoutShopperUrl %>/checkoutshopper/sdk/2.1.0/adyen.css" />
-  <script src="<%= checkoutShopperUrl %>/checkoutshopper/sdk/2.1.0/adyen.js"></script>
+   <meta charset="UTF-8">
+   <title>Title</title>
+   <link rel="stylesheet" href="<%= checkoutShopperUrl %>/checkoutshopper/sdk/2.1.0/adyen.css" />
+   <script src="<%= checkoutShopperUrl %>/checkoutshopper/sdk/2.1.0/adyen.js"></script>
 </head>
 <body>
 <div id="card"></div>
 </body>
 <script>
-    // 只需执行一次
-  const configuration = {
-    locale: "en_US",
-    originKey: "pub.v2.8015531734320675.aHR0cHM6Ly93ZWwtMzAzMS5uZ3Jvay5pbw.Te_bLogFtSvXgEdJs8S3J33c4zsJkzl2jzfhiQ7MDcY",
-    loadingContext: "<%= checkoutShopperUrl %>/checkoutshopper/"
-  };
-  const checkout = new AdyenCheckout(configuration);
+   // 只需执行一次
+   const configuration = {
+      locale: "en_US",
+      originKey: "pub.v2.8015531734320675.aHR0cHM6Ly93ZWwtMzAzMS5uZ3Jvay5pbw.Te_bLogFtSvXgEdJs8S3J33c4zsJkzl2jzfhiQ7MDcY",
+      loadingContext: "<%= checkoutShopperUrl %>/checkoutshopper/"
+   };
+   const checkout = new AdyenCheckout(configuration);
 
-  const card = checkout.create("card", {
-    onChange: handleOnChange
-  }).mount("#card");
-  let that = this;
+   const card = checkout.create("card", {
+      onChange: handleOnChange
+   }).mount("#card");
+   let that = this;
 
-  function handleOnChange(state, component) {
-    //console.log(state);
-    //console.log(component);
-    state.isValid // true or false.
-    state.data
-    /* for example:
-     {type: "scheme",
-        encryptedCardNumber: "adyenjs_0_1_18$MT6ppy0FAMVMLH...",
-        encryptedExpiryMonth: "adyenjs_0_1_18$MT6ppy0FAMVMLH...",
-        encryptedExpiryYear: "adyenjs_0_1_18$MT6ppy0FAMVMLH...",
-        encryptedSecurityCode: "adyenjs_0_1_18$MT6ppy0FAMVMLH..."}
-    */
-    if (state.isValid) {
-      let { encryptedCardNumber, encryptedExpiryMonth, encryptedExpiryYear, encryptedSecurityCode } = state.data;
-      //console.log(encryptedCardNumber, encryptedExpiryMonth, encryptedExpiryYear, encryptedSecurityCode)
-      // todo: save encryptedCardNumber, encryptedExpiryMonth, encryptedExpiryYear, encryptedSecurityCode & submit Yo.execOrder({ ... })
-    } else {
-        that.Adyen.encryptedCardNumber = '';
-        that.Adyen.encryptedExpiryMonth = '';
-        that.Adyen.encryptedExpiryYear = '';
-        that.Adyen.encryptedSecurityCode = '';
-    }
-  }
+   function handleOnChange(state, component) {
+      //console.log(state);
+      //console.log(component);
+      state.isValid // true or false.
+      state.data
+      /* for example:
+       {type: "scheme",
+          encryptedCardNumber: "adyenjs_0_1_18$MT6ppy0FAMVMLH...",
+          encryptedExpiryMonth: "adyenjs_0_1_18$MT6ppy0FAMVMLH...",
+          encryptedExpiryYear: "adyenjs_0_1_18$MT6ppy0FAMVMLH...",
+          encryptedSecurityCode: "adyenjs_0_1_18$MT6ppy0FAMVMLH..."}
+      */
+      if (state.isValid) {
+         let { encryptedCardNumber, encryptedExpiryMonth, encryptedExpiryYear, encryptedSecurityCode } = state.data;
+         //console.log(encryptedCardNumber, encryptedExpiryMonth, encryptedExpiryYear, encryptedSecurityCode)
+         // todo: save encryptedCardNumber, encryptedExpiryMonth, encryptedExpiryYear, encryptedSecurityCode & submit Yo.execOrder({ ... })
+      } else {
+         that.Adyen.encryptedCardNumber = '';
+         that.Adyen.encryptedExpiryMonth = '';
+         that.Adyen.encryptedExpiryYear = '';
+         that.Adyen.encryptedSecurityCode = '';
+      }
+   }
 </script>
 </html>
 ```
@@ -1277,15 +1277,15 @@ Yo.generateOriginKey({ originDomain: originDomain }, (err, data) => {
 4.    浏览器执行订单：
 ```javascript
 Yo.execOrder({
-    type: 'Adyen.CreditCard',
-    lang: 'en',
-    accessToken: this.loginInfo.accessToken,
-    orderId: this.orderId,
-    encryptedCardNumber: this.Adyen.encryptedCardNumber,
-    encryptedExpiryMonth: this.Adyen.encryptedExpiryMonth,
-    encryptedExpiryYear: this.Adyen.encryptedExpiryYear,
-    encryptedSecurityCode: this.Adyen.encryptedSecurityCode,
-    openNewWindow: this.openNewWindow > 0,
+   type: 'Adyen.CreditCard',
+   lang: 'en',
+   accessToken: this.loginInfo.accessToken,
+   orderId: this.orderId,
+   encryptedCardNumber: this.Adyen.encryptedCardNumber,
+   encryptedExpiryMonth: this.Adyen.encryptedExpiryMonth,
+   encryptedExpiryYear: this.Adyen.encryptedExpiryYear,
+   encryptedSecurityCode: this.Adyen.encryptedSecurityCode,
+   openNewWindow: this.openNewWindow > 0,
 })
 ```
 请求参数：
@@ -1313,11 +1313,11 @@ Yo.execOrder({
 
 ```javascript
 Yo.execOrder({
-    type: 'Adyen.Alipay',
-    lang: 'en',
-    accessToken: this.loginInfo.accessToken,
-    orderId: this.orderId,
-    openNewWindow: this.openNewWindow > 0,
+   type: 'Adyen.Alipay',
+   lang: 'en',
+   accessToken: this.loginInfo.accessToken,
+   orderId: this.orderId,
+   openNewWindow: this.openNewWindow > 0,
 })
 ```  
 
@@ -1345,11 +1345,11 @@ Yo.execOrder({
 2.    浏览器执行订单：
 ```javascript
 Yo.execOrder({
-    type: 'Stripe.CreditCard',
-    lang: 'en',
-    accessToken: this.loginInfo.accessToken,
-    orderId: this.orderId,
-    openNewWindow: this.openNewWindow > 0,
+   type: 'Stripe.CreditCard',
+   lang: 'en',
+   accessToken: this.loginInfo.accessToken,
+   orderId: this.orderId,
+   openNewWindow: this.openNewWindow > 0,
 })
 ```
 请求参数：
@@ -1379,11 +1379,11 @@ Yo.execOrder({
 2.    浏览器执行订单：
 ```javascript
 Yo.execOrder({
-    type: 'Stripe.Alipay',
-    lang: 'en',
-    accessToken: this.loginInfo.accessToken,
-    orderId: this.orderId,
-    openNewWindow: this.openNewWindow > 0,
+   type: 'Stripe.Alipay',
+   lang: 'en',
+   accessToken: this.loginInfo.accessToken,
+   orderId: this.orderId,
+   openNewWindow: this.openNewWindow > 0,
 })
 ```
 请求参数：
@@ -1416,11 +1416,11 @@ Yo.execOrder({
 2.    浏览器执行订单：
 ```javascript
 Yo.execOrder({
-    type: 'Stripe.CreditCard',
-    lang: 'kr',
-    accessToken: this.loginInfo.accessToken,
-    orderId: this.orderId,
-    openNewWindow: this.openNewWindow > 0,
+   type: 'Stripe.CreditCard',
+   lang: 'kr',
+   accessToken: this.loginInfo.accessToken,
+   orderId: this.orderId,
+   openNewWindow: this.openNewWindow > 0,
 })
 ```
 请求参数：
@@ -1450,11 +1450,11 @@ Yo.execOrder({
 
 ```javascript
 Yo.execOrder({
-    type: 'Paypal',
-    lang: 'kr',
-    accessToken: this.loginInfo.accessToken,
-    orderId: this.orderId,
-    openNewWindow: this.openNewWindow > 0,
+   type: 'Paypal',
+   lang: 'kr',
+   accessToken: this.loginInfo.accessToken,
+   orderId: this.orderId,
+   openNewWindow: this.openNewWindow > 0,
 })
 ```
 
