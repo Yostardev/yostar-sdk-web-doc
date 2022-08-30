@@ -95,35 +95,35 @@
 ## 安装示例
 ```javascript
 /**
- window.Yo
- */
-<script src="${服务器地址}/js/${浏览器Javascript文件}"></script>
+    window.Yo
+*/
+<script src="${服务器地址}/js/${浏览器Javascript文件}"></script>  
 
 /**
- 日服信用卡支付：
- window.Multipayment
- */
+    日服信用卡支付：
+    window.Multipayment
+*/
 <script src="${令牌文件服务器地址}"></script>
 
 /**
- 美服信用卡支付：
- window.AdyenCheckout
- */
-<link rel="stylesheet" href="<%= checkoutShopperUrl %>/checkoutshopper/sdk/2.1.0/adyen.css" />
-<script src="<%= checkoutShopperUrl %>/checkoutshopper/sdk/2.1.0/adyen.js"></script>
+    美服信用卡支付：
+    window.AdyenCheckout
+*/
+  <link rel="stylesheet" href="<%= checkoutShopperUrl %>/checkoutshopper/sdk/2.1.0/adyen.css" />
+  <script src="<%= checkoutShopperUrl %>/checkoutshopper/sdk/2.1.0/adyen.js"></script>
 ```
 
 
 ## Twitter登录请求
 ```javascript
 Yo.twitterAuth({
-   redirect_uri: this.redirect_uri,
-   openNewWindow: this.openNewWindow > 0
+    redirect_uri: this.redirect_uri,
+    openNewWindow: this.openNewWindow > 0
 });
 Yo.twitterAuth({
-   redirect_uri: this.redirect_uri_2,
-   openNewWindow: this.openNewWindow > 0,
-   version: 2,
+    redirect_uri: this.redirect_uri_2,
+    openNewWindow: this.openNewWindow > 0,
+    version: 2,
 });
 ```
 请求方法： Yo.twitterAuth
@@ -653,7 +653,7 @@ Yo.kmcInfo({
 | kmc_status |  整数  | 当前uid实名验证的状态，1：已实名， 2：未实名， 3：实名已过期。当值为1时代表已验证，不要再次发起实名验证 |
 | kmc_request_id | 字符串  |                 忽略，请求实名认证的连接参数                  |
 
-> 注：仅当返回值的result=0、kmc_status=2时，会自动通过JavaScript打开弹出的新窗口跳转到韩国实名认证页面
+> 注：仅当返回值的result=0、kmc_status!=1时，会自动通过JavaScript打开弹出的新窗口跳转到韩国实名认证页面
 
 ```javascript
 // 示例
@@ -1502,16 +1502,16 @@ Yo.execOrder({
 ```javascript
 // 示例代码：
 Yo.execOrder({
-   type: 'Paypal',
-   lang: this.payweblang,
-   accessToken: this.accessTokenTest || this.loginInfo.accessToken,
-   orderId: this.orderId,
-   itemName: this.itemName,
-   openNewWindow: this.openNewWindow > 0,
-   popupWindowOptions: {
-      isUsePopupWindow: true,
-      popupWindowParams: "height=600, width=800, top=30%,left=30%, toolbar=no, menubar=no, scrollbars=no, resizable=no,location=no, status=no",
-   },
+    type: 'Paypal',
+    lang: this.payweblang,
+    accessToken: this.accessTokenTest || this.loginInfo.accessToken,
+    orderId: this.orderId,
+    itemName: this.itemName,
+    openNewWindow: this.openNewWindow > 0,
+    popupWindowOptions: {
+        isUsePopupWindow: true,
+        popupWindowParams: "height=600, width=800, top=30%,left=30%, toolbar=no, menubar=no, scrollbars=no, resizable=no,location=no, status=no",
+    },
 })
 ```  
 
