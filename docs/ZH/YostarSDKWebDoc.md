@@ -95,35 +95,35 @@
 ## 安装示例
 ```javascript
 /**
-    window.Yo
-*/
-<script src="${服务器地址}/js/${浏览器Javascript文件}"></script>  
+ window.Yo
+ */
+<script src="${服务器地址}/js/${浏览器Javascript文件}"></script>
 
 /**
-    日服信用卡支付：
-    window.Multipayment
-*/
+ 日服信用卡支付：
+ window.Multipayment
+ */
 <script src="${令牌文件服务器地址}"></script>
 
 /**
-    美服信用卡支付：
-    window.AdyenCheckout
-*/
-  <link rel="stylesheet" href="<%= checkoutShopperUrl %>/checkoutshopper/sdk/2.1.0/adyen.css" />
-  <script src="<%= checkoutShopperUrl %>/checkoutshopper/sdk/2.1.0/adyen.js"></script>
+ 美服信用卡支付：
+ window.AdyenCheckout
+ */
+<link rel="stylesheet" href="<%= checkoutShopperUrl %>/checkoutshopper/sdk/2.1.0/adyen.css" />
+<script src="<%= checkoutShopperUrl %>/checkoutshopper/sdk/2.1.0/adyen.js"></script>
 ```
 
 
 ## Twitter登录请求
 ```javascript
 Yo.twitterAuth({
-    redirect_uri: this.redirect_uri,
-    openNewWindow: this.openNewWindow > 0
+   redirect_uri: this.redirect_uri,
+   openNewWindow: this.openNewWindow > 0
 });
 Yo.twitterAuth({
-    redirect_uri: this.redirect_uri_2,
-    openNewWindow: this.openNewWindow > 0,
-    version: 2,
+   redirect_uri: this.redirect_uri_2,
+   openNewWindow: this.openNewWindow > 0,
+   version: 2,
 });
 ```
 请求方法： Yo.twitterAuth
@@ -1439,13 +1439,13 @@ Yo.execOrder({
 ```
 请求参数：
 
-|         参数          |  类型  |                   说明                   |
-| :-------------------: | :----: | :--------------------------------------: |
+|         参数          |  类型  |                  说明                  |
+| :-------------------: | :----: |:------------------------------------:|
 |         type          | 字符串 | 必填，'Stripe.CreditCard'，美服信用卡Stripe支付 |
-|         lang          | 字符串 |             必填，'en'，美服             |
-|      accessToken      | 字符串 |    必填，执行登录后返回的accessToken     |
-|        orderId        | 字符串 |       必填，订单创建时获取的订单号       |
-|    openNewWindow      |  整数  |   是否新窗口打开，取值!!openNewWindow    |
+|         lang          | 字符串 |              必填，'kr'，韩服              |
+|      accessToken      | 字符串 |        必填，执行登录后返回的accessToken        |
+|        orderId        | 字符串 |            必填，订单创建时获取的订单号            |
+|    openNewWindow      |  整数  |      是否新窗口打开，取值!!openNewWindow       |
 
 > 测试卡号 VISA 4242424242424242 (CVC任意数字，日期任意将来日期)  
 > 测试卡号 Mastercard 5555555555554444 (CVC任意数字，日期任意将来日期)  
@@ -1464,11 +1464,11 @@ Yo.execOrder({
 
 ```javascript
 Yo.execOrder({
-    type: 'Paypal',
-    lang: 'kr',
-    accessToken: this.loginInfo.accessToken,
-    orderId: this.orderId,
-    openNewWindow: this.openNewWindow > 0,
+   type: 'Paypal',
+   lang: 'kr',
+   accessToken: this.loginInfo.accessToken,
+   orderId: this.orderId,
+   openNewWindow: this.openNewWindow > 0,
 })
 ```
 
@@ -1502,16 +1502,16 @@ Yo.execOrder({
 ```javascript
 // 示例代码：
 Yo.execOrder({
-    type: 'Paypal',
-    lang: this.payweblang,
-    accessToken: this.accessTokenTest || this.loginInfo.accessToken,
-    orderId: this.orderId,
-    itemName: this.itemName,
-    openNewWindow: this.openNewWindow > 0,
-    popupWindowOptions: {
-        isUsePopupWindow: true,
-        popupWindowParams: "height=600, width=800, top=30%,left=30%, toolbar=no, menubar=no, scrollbars=no, resizable=no,location=no, status=no",
-    },
+   type: 'Paypal',
+   lang: this.payweblang,
+   accessToken: this.accessTokenTest || this.loginInfo.accessToken,
+   orderId: this.orderId,
+   itemName: this.itemName,
+   openNewWindow: this.openNewWindow > 0,
+   popupWindowOptions: {
+      isUsePopupWindow: true,
+      popupWindowParams: "height=600, width=800, top=30%,left=30%, toolbar=no, menubar=no, scrollbars=no, resizable=no,location=no, status=no",
+   },
 })
 ```  
 
