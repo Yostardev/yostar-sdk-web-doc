@@ -758,8 +758,8 @@ Yo.addBankDirectInfo({
 |    参数     |  类型  |                                                     说明                                                      |
 |:---------:|:----:|:-----------------------------------------------------------------------------------------------------------:|
 | requestId | 字符串  |                                                  绑定操作的请求id                                                  |
-|  lastName  | 字符串  | 账户持有人（姓,仅限日语片假名,需要接入时前端直接校验,参考[wanakana.isKatakana](#https://github.com/WaniKani/WanaKana)），长度限制 双字节 60 字节  |
-|  firstName  | 字符串  |      账户持有人（名,仅限日语片假名,需要前端接入时前端直接校验,参考[wanakana.isKatakana](#https://github.com/WaniKani/WanaKana)），长度限制 双字节 60 字节      |
+|  lastName  | 字符串  | 账户持有人（姓,仅限日语片假名,需要接入时前端直接校验,参考[wanakana.isKatakana](https://github.com/WaniKani/WanaKana)），长度限制 双字节 60 字节  |
+|  firstName  | 字符串  |      账户持有人（名,仅限日语片假名,需要前端接入时前端直接校验,参考[wanakana.isKatakana](https://github.com/WaniKani/WanaKana)），长度限制 双字节 60 字节      |
 |  dateOfBirth  | 字符串  |                                              出生日期，YYYYMMDD 格式                                               |
 
 返回值:
